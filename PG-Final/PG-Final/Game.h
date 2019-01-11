@@ -1,10 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Character.h"
 #include <iostream>
 
 enum States {
 	MENU,
 	GAME,
+	END,
 	EXIT
 };
 
@@ -21,5 +23,7 @@ public:
 
 	void Menu();
 	void Play();
-	void Exit();
+	void End();
+
+	float deltaTime = 0.0f;
 };
