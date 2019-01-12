@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Character.h"
+#include "Bullet.h"
 #include <iostream>
 
 enum States {
@@ -18,6 +19,7 @@ public:
 
 	sf::RenderWindow window;
 	States state;
+	float cooldown;
 
 	void RunGame();
 

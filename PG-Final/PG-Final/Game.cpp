@@ -37,8 +37,11 @@ void Game::Play() {
 	std::cout << "Estoy en play" << std::endl;
 
 	Character player;
+	std::vector<Bullet> vec;
 
 	sf::Clock clock;
+
+	bool isFiring = false;
 
 	while (state == GAME) {
 
@@ -60,14 +63,38 @@ void Game::Play() {
 					}
 					break;
 			}
+
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+			isFiring = true;
+		}
+
+		cooldown -= deltaTime;
+
 		/* UPDATES */
-		player.Update(deltaTime);
+		player.Update(deltaTime, window);
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);
 		player.Draw(window);
+
+		/* SHOOT */
+		/* FALTA ELIMINAR LAS BALAS */
+		if (isFiring == true) {
+			if (cooldown <= 0) {
+				cooldown = 0.30f;
+				Bullet bullet(sf::Vector2f(5, 30));
+				bullet.SetPos(sf::Vector2f(player.GetX(), player.GetY() - 30));
+				vec.push_back(bullet);
+				isFiring = false;
+			}
+		}
+
+		for (int i = 0; i < vec.size(); i++) {
+			vec[i].Draw(window);
+			vec[i].Move(10);
+		}
 
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
