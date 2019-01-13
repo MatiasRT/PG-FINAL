@@ -39,11 +39,13 @@ void Game::Play() {
 	Character player1(400, 560);
 	Character player2(400, 40);
 
-	std::vector<Bullet> vec;
+	std::vector<Bullet> vec1;
+	std::vector<Bullet> vec2;
 
 	sf::Clock clock;
 
-	bool isFiring = false;
+	bool isFiring1 = false;
+	bool isFiring2 = false;
 
 	while (state == GAME) {
 
@@ -65,39 +67,55 @@ void Game::Play() {
 					}
 					break;
 			}
-
 		}
 
+		/* SHOOT INPUTS */
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			isFiring = true;
+			isFiring1 = true;
 		}
 
-		cooldown -= deltaTime;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) {
+			isFiring2 = true;
+		}
+
+		cooldown1 -= deltaTime;
+		cooldown2 -= deltaTime;
 
 		/* UPDATES */
 		player1.Update(deltaTime, 1);
 		player2.Update(deltaTime, 2);
+
+		/* SHOOT */
+		/* FALTA ELIMINAR LAS BALAS */
+		if (isFiring1 == true) {
+			if (cooldown1 <= 0) {
+				cooldown1 = 0.30f;
+				player1.Shoot(&vec1, -30);
+				isFiring1 = false;
+			}
+		}
+
+		if (isFiring2 == true) {
+			if (cooldown2 <= 0) {
+				cooldown2 = 0.30f;
+				player2.Shoot(&vec2, 10);
+				isFiring2 = false;
+			}
+		}
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);
 		player1.Draw(window);
 		player2.Draw(window);
 
-		/* SHOOT */
-		/* FALTA ELIMINAR LAS BALAS */
-	
-
-		if (isFiring == true) {
-			if (cooldown <= 0) {
-				cooldown = 0.30f;
-				player1.Shoot(&vec);
-				isFiring = false;
-			}
+		for (int i = 0; i < vec1.size(); i++) {
+			vec1[i].Draw(window);
+			vec1[i].Move(10, 1);	
 		}
 
-		for (int i = 0; i < vec.size(); i++) {
-			vec[i].Draw(window);
-			vec[i].Move(10);
+		for (int i = 0; i < vec2.size(); i++) {
+			vec2[i].Draw(window);
+			vec2[i].Move(10, 2);
 		}
 
 		window.display();

@@ -19,13 +19,13 @@ public:
 
 	sf::RenderWindow window;
 	States state;
-	float cooldown;
+	float cooldown1;
+	float cooldown2;
+	float deltaTime = 0.0f;
 
 	void RunGame();
 
 	void Menu();
 	void Play();
 	void End();
-
-	float deltaTime = 0.0f;
 };

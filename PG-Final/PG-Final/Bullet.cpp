@@ -9,8 +9,15 @@ Bullet::~Bullet() {
 
 }
 
-void Bullet::Move(int speed) {
-	bullet.move(0, -speed);
+void Bullet::Move(int speed, int playerNum) {
+	switch (playerNum) {
+		case 1:
+			bullet.move(0, -speed);
+			break;
+		case 2:
+			bullet.move(0, speed);
+			break;
+	}
 }
 
 void Bullet::Draw(sf::RenderWindow & window) {

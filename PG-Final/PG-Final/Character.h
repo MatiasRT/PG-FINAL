@@ -22,7 +22,7 @@ public:
 	void Input(float deltaTime, int playerNum);
 	void Movement(float deltaTime);
 	void Draw(sf::RenderWindow & window);
-	void Shoot(std::vector<Bullet>* bulletVec);
+	void Shoot(std::vector<Bullet>* bulletVec, int offset);
 
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }

@@ -84,8 +84,8 @@ void Character::Draw(sf::RenderWindow & window) {
 	window.draw(player);
 }
 
-void Character::Shoot(std::vector<Bullet>* bulletVec) {
+void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 		Bullet bullet(sf::Vector2f(5, 30));
-		bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y - 30));
+		bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
 		bulletVec->push_back(bullet);
 }

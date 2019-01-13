@@ -12,7 +12,7 @@ private:
 public:
 	Bullet(sf::Vector2f size);
 	~Bullet();
-	void Move(int speed);
+	void Move(int speed, int playerNum);
 	void Draw(sf::RenderWindow & window);
 	void SetPos(sf::Vector2f pos);
 };
