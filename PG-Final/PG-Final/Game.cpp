@@ -3,6 +3,10 @@
 Game::Game() {
 	window.create(sf::VideoMode(800, 600), "Game", sf::Style::Close);
 	window.setFramerateLimit(60);
+
+	if (!font1.loadFromFile("Assets/beef.ttf")) {
+		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
+	}
 }
 
 Game::~Game() {
@@ -36,13 +40,24 @@ void Game::Menu() {
 void Game::Play() {
 	std::cout << "Estoy en play" << std::endl;
 
+	/* PLAYERS */
 	Character player1(400, 560);
 	Character player2(400, 40);
 
+	/* BULLETS */
 	std::vector<Bullet> vec1;
 	std::vector<Bullet> vec2;
 
+	/* MISC */
 	sf::Clock clock;
+	sf::Text scoreText1("0", font1, 18);
+	scoreText1.setOrigin(sf::Vector2f(scoreText1.getLocalBounds().width / 2, 0));
+	scoreText1.setPosition(360, 320);
+	scoreText1.setFillColor(sf::Color(245, 147, 51));
+	sf::Text scoreText2("0", font1, 18);
+	scoreText2.setOrigin(sf::Vector2f(scoreText2.getLocalBounds().width / 2, 0));
+	scoreText2.setPosition(360, 280);
+	scoreText2.setFillColor(sf::Color(245, 245, 0));
 
 	bool isFiring1 = false;
 	bool isFiring2 = false;
@@ -84,6 +99,8 @@ void Game::Play() {
 		/* UPDATES */
 		player1.Update(deltaTime, 1);
 		player2.Update(deltaTime, 2);
+		scoreText1.setString(std::to_string(score1));
+		scoreText2.setString(std::to_string(score2));
 
 		/* SHOOT */
 		/* FALTA ELIMINAR LAS BALAS */
@@ -105,8 +122,11 @@ void Game::Play() {
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);
+
 		player1.Draw(window);
 		player2.Draw(window);
+		window.draw(scoreText1);
+		window.draw(scoreText2);
 
 		for (int i = 0; i < vec1.size(); i++) {
 			vec1[i].Draw(window);
@@ -120,11 +140,11 @@ void Game::Play() {
 
 		/* COLLISIONS */
 		for (int i = 0; i < vec1.size(); i++) {
-			player2.CheckCollision(vec1[i]);
+			player2.CheckCollision(vec1[i], &score1);
 		}
 
 		for (int i = 0; i < vec2.size(); i++) {
-			player1.CheckCollision(vec2[i]);
+			player1.CheckCollision(vec2[i], &score2);
 		}
 
 		window.display();

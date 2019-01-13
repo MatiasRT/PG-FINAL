@@ -23,7 +23,7 @@ public:
 	void Movement(float deltaTime);
 	void Draw(sf::RenderWindow & window);
 	void Shoot(std::vector<Bullet>* bulletVec, int offset);
-	void CheckCollision(Bullet bullet);
+	void CheckCollision(Bullet bullet, int *score);
 
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }

@@ -4,8 +4,6 @@ Character::Character(int x, int y) {
 	player.setSize(sf::Vector2f(30, 30));
 	player.setOrigin(player.getSize().x / 2, player.getSize().y / 2);
 	player.setFillColor(sf::Color(245, 147, 51));
-	//player.setPosition(400, 560);
-	//player.setPosition(400, 40);
 	player.setPosition(x, y);
 }
 
@@ -85,17 +83,17 @@ void Character::Draw(sf::RenderWindow & window) {
 }
 
 void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
-		Bullet bullet(sf::Vector2f(5, 30));
-		bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
-		bulletVec->push_back(bullet);
+	Bullet bullet(sf::Vector2f(5, 30));
+	bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
+	bulletVec->push_back(bullet);
 }
 
-void Character::CheckCollision(Bullet bullet) {
+void Character::CheckCollision(Bullet bullet, int *score) {
 	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
 		bullet.GetBottom() > player.getPosition().y &&
 		bullet.GetLeft() < player.getPosition().x + player.getSize().x &&
 		bullet.GetRight() > player.getPosition().x) {
-
-		std::cout << "Colision" << std::endl;
+		*score += 200;
+		std::cout << "Colision y score:" << *score << std::endl;
 	}
 }
