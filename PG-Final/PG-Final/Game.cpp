@@ -118,6 +118,15 @@ void Game::Play() {
 			vec2[i].Move(10, 2);
 		}
 
+		/* COLLISIONS */
+		for (int i = 0; i < vec1.size(); i++) {
+			player2.CheckCollision(vec1[i]);
+		}
+
+		for (int i = 0; i < vec2.size(); i++) {
+			player1.CheckCollision(vec2[i]);
+		}
+
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();

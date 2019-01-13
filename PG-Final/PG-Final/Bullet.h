@@ -15,4 +15,9 @@ public:
 	void Move(int speed, int playerNum);
 	void Draw(sf::RenderWindow & window);
 	void SetPos(sf::Vector2f pos);
+
+	int GetTop() { return bullet.getPosition().y; }
+	int GetBottom() { return bullet.getPosition().y + bullet.getSize().y; }
+	int GetLeft() { return bullet.getPosition().x; }
+	int GetRight() { return bullet.getPosition().x + bullet.getSize().x; }
 };

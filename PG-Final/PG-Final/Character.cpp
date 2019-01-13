@@ -89,3 +89,13 @@ void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 		bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
 		bulletVec->push_back(bullet);
 }
+
+void Character::CheckCollision(Bullet bullet) {
+	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
+		bullet.GetBottom() > player.getPosition().y &&
+		bullet.GetLeft() < player.getPosition().x + player.getSize().x &&
+		bullet.GetRight() > player.getPosition().x) {
+
+		std::cout << "Colision" << std::endl;
+	}
+}
