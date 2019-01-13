@@ -13,14 +13,16 @@ private:
 	float cooldown;
 
 public:
-	Character();
+	Character(int x, int y);
 	~Character();
 
 	//sf::RectangleShape GetPlayer() { return player; };
 
-	void Update(float deltaTime, sf::RenderWindow & window);
+	void Update(float deltaTime, int playerNum);
+	void Input(float deltaTime, int playerNum);
+	void Movement(float deltaTime);
 	void Draw(sf::RenderWindow & window);
-	void Shoot(float deltaTime, sf::RenderWindow & window);
+	void Shoot(std::vector<Bullet>* bulletVec);
 
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }
