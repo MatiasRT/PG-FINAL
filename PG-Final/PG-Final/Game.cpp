@@ -10,7 +10,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+	delete hud;
 }
 
 void Game::RunGame() {
@@ -54,6 +54,7 @@ void Game::Play() {
 	score2 = 50000;
 	sf::Clock clock;
 	hud = new HUD();
+	hud->Game();
 
 
 	bool isFiring1 = false;
@@ -121,7 +122,7 @@ void Game::Play() {
 		window.clear(sf::Color::Black);
 		player1.Draw(window);
 		player2.Draw(window);
-		hud->Draw(window);
+		hud->DrawGame(window);
 
 		for (int i = 0; i < vec1.size(); i++) {
 			vec1[i].Draw(window);
@@ -143,6 +144,7 @@ void Game::Play() {
 		}
 
 		/* SCORE MANAGER */
+		/* FALTA PROGRAMAR EMPATE */
 		if (timer <= 0) {
 			timer = 0.22f;
 			score1 -= 500;
@@ -179,31 +181,9 @@ void Game::GameOver(int winner) {
 			finalScore = score2;
 			break;
 	}
+	hud = new HUD;
 
-	sf::Text winText("The Winner Is", font1, 30);
-	winText.setOrigin(std::round(winText.getLocalBounds().width / 2), 20);
-	winText.setPosition((window.getSize().x / 2), 80);
-	winText.setFillColor(sf::Color(245, 147, 51));
-
-	sf::Text playerW(pWin, font1, 25);
-	playerW.setOrigin(std::round(playerW.getLocalBounds().width / 2), 20);
-	playerW.setPosition((window.getSize().x / 2), 250);
-	playerW.setFillColor(sf::Color(245, 147, 51));
-
-	sf::Text score(std::to_string(finalScore), font1, 25);
-	score.setOrigin(std::round(score.getLocalBounds().width / 2), 20);
-	score.setPosition((window.getSize().x / 2), 300);
-	score.setFillColor(sf::Color(245, 147, 51));
-
-	sf::Text menu("Press ENTER to continue", font1, 10);
-	menu.setOrigin(std::round(menu.getLocalBounds().width / 2), 20);
-	menu.setPosition((window.getSize().x / 2), 500);
-	menu.setFillColor(sf::Color(245, 147, 51));
-
-	sf::Text restart("Press R to restart", font1, 10);
-	restart.setOrigin(std::round(restart.getLocalBounds().width / 2), 20);
-	restart.setPosition((window.getSize().x / 2), 550);
-	restart.setFillColor(sf::Color(245, 147, 51));
+	hud->Over(pWin, finalScore);
 
 	while (state == OVER) {
 		sf::Event event;
@@ -223,12 +203,7 @@ void Game::GameOver(int winner) {
 
 		window.clear(sf::Color(15, 15, 15));
 
-		window.draw(winText);
-		window.draw(playerW);
-		window.draw(score);
-		window.draw(menu);
-		//window.draw(restart);
-		
+		hud->DrawOver(window);
 
 		window.display();
 	}

@@ -8,11 +8,21 @@ private:
 
 	sf::Text* scoreText1;
 	sf::Text* scoreText2;
+	sf::Text* winText;
+	sf::Text* playerW;
+	sf::Text* score;
+	sf::Text* menu;
+	sf::Text* restart;
 
 public:
 	HUD();
 	~HUD();
 
+	void Menu();
+	void Game();
+	void Over(std::string pWin, int finalScore);
+
 	void Update(int score1, int score2);
-	void Draw(sf::RenderWindow & window);
+	void DrawGame(sf::RenderWindow & window);
+	void DrawOver(sf::RenderWindow & window);
 };
