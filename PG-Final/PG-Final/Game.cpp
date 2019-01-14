@@ -149,12 +149,12 @@ void Game::Play() {
 		}
 
 		/* SCORE MANAGER */
-		if (score1 > 5000) {
+		if (score1 > 50000) {
 			state = OVER;
 			GameOver(1);
 		}
 		
-		if (score2 > 5000) {
+		if (score2 > 50000) {
 			state = OVER;
 			GameOver(2);
 		}

@@ -91,8 +91,8 @@ void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 void Character::CheckCollision(Bullet bullet, int *score) {
 	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
 		bullet.GetBottom() > player.getPosition().y &&
-		bullet.GetLeft() < player.getPosition().x + player.getSize().x &&
-		bullet.GetRight() > player.getPosition().x) {
+		bullet.GetLeft() < player.getPosition().x + player.getSize().x - 15 &&  // 15 es la mitad del player
+		bullet.GetRight() + 15 > player.getPosition().x) {
 		*score += 200;
 		std::cout << "Colision y score:" << *score << std::endl;
 	}
