@@ -24,9 +24,11 @@ public:
 
 	float cooldown1;
 	float cooldown2;
+	float timer;
 	float deltaTime = 0.0f;
-	int score1 = 0;
-	int score2 = 0;
+	int score1;
+	int score2;
+	int winner;
 
 	void RunGame();
 

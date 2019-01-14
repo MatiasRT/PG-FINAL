@@ -93,7 +93,7 @@ void Character::CheckCollision(Bullet bullet, int *score) {
 		bullet.GetBottom() > player.getPosition().y &&
 		bullet.GetLeft() < player.getPosition().x + player.getSize().x - 15 &&  // 15 es la mitad del player
 		bullet.GetRight() + 15 > player.getPosition().x) {
-		*score += 200;
+		*score += 250;
 		std::cout << "Colision y score:" << *score << std::endl;
 	}
 }

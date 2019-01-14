@@ -26,7 +26,7 @@ void Game::RunGame() {
 			Play();
 			break;
 		case OVER:
-			//GameOver();
+			GameOver(winner);
 			break;
 		case EXIT:
 			break;
@@ -50,6 +50,8 @@ void Game::Play() {
 	std::vector<Bullet> vec2;
 
 	/* MISC */
+	score1 = 50000;
+	score2 = 50000;
 	sf::Clock clock;
 	sf::Text scoreText1("0", font1, 18);
 	scoreText1.setOrigin(sf::Vector2f(scoreText1.getLocalBounds().width / 2, 0));
@@ -96,6 +98,7 @@ void Game::Play() {
 
 		cooldown1 -= deltaTime;
 		cooldown2 -= deltaTime;
+		timer -= deltaTime;
 
 		/* UPDATES */
 		player1.Update(deltaTime, 1);
@@ -149,14 +152,20 @@ void Game::Play() {
 		}
 
 		/* SCORE MANAGER */
-		if (score1 > 50000) {
+		if (timer <= 0) {
+			timer = 0.22f;
+			score1 -= 500;
+			score2 -= 500;
+		}
+
+		if (score1 < 0) {
+			winner = 2;
 			state = OVER;
-			GameOver(1);
 		}
 		
-		if (score2 > 50000) {
+		if (score2 < 0) {
+			winner = 1;
 			state = OVER;
-			GameOver(2);
 		}
 
 		window.display();
