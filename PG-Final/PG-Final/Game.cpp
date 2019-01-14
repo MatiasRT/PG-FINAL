@@ -53,14 +53,8 @@ void Game::Play() {
 	score1 = 50000;
 	score2 = 50000;
 	sf::Clock clock;
-	sf::Text scoreText1("0", font1, 18);
-	scoreText1.setOrigin(sf::Vector2f(scoreText1.getLocalBounds().width / 2, 0));
-	scoreText1.setPosition(360, 320);
-	scoreText1.setFillColor(sf::Color(245, 147, 51));
-	sf::Text scoreText2("0", font1, 18);
-	scoreText2.setOrigin(sf::Vector2f(scoreText2.getLocalBounds().width / 2, 0));
-	scoreText2.setPosition(360, 280);
-	scoreText2.setFillColor(sf::Color(245, 245, 0));
+	hud = new HUD();
+
 
 	bool isFiring1 = false;
 	bool isFiring2 = false;
@@ -103,8 +97,7 @@ void Game::Play() {
 		/* UPDATES */
 		player1.Update(deltaTime, 1);
 		player2.Update(deltaTime, 2);
-		scoreText1.setString(std::to_string(score1));
-		scoreText2.setString(std::to_string(score2));
+		hud->Update(score1, score2);
 
 		/* SHOOT */
 		/* FALTA ELIMINAR LAS BALAS */
@@ -126,11 +119,9 @@ void Game::Play() {
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);
-
 		player1.Draw(window);
 		player2.Draw(window);
-		window.draw(scoreText1);
-		window.draw(scoreText2);
+		hud->Draw(window);
 
 		for (int i = 0; i < vec1.size(); i++) {
 			vec1[i].Draw(window);

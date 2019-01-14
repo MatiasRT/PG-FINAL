@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 #include "Bullet.h"
+#include "HUD.h"
 #include <iostream>
 
 enum States {
@@ -12,6 +13,14 @@ enum States {
 };
 
 class Game {
+private:
+	States state;
+	HUD* hud;
+
+	float cooldown1;
+	float cooldown2;
+	float timer;
+	int winner;
 
 public:
 	Game();
@@ -20,18 +29,11 @@ public:
 	sf::RenderWindow window;
 	sf::Font font1;
 
-	States state;
-
-	float cooldown1;
-	float cooldown2;
-	float timer;
 	float deltaTime = 0.0f;
 	int score1;
 	int score2;
-	int winner;
-
+	
 	void RunGame();
-
 	void Menu();
 	void Play();
 	void GameOver(int winner);
