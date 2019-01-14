@@ -11,13 +11,13 @@ Character::~Character() {
 
 }
 
-void Character::Update(float deltaTime, int playerNum) {
+void Character::Update(float deltaTime, int playerNum, bool* shoot) {
 	Movement(deltaTime);
 
-	Input(deltaTime, playerNum);
+	Input(deltaTime, playerNum, shoot);
 }
 
-void Character::Input(float deltaTime, int playerNum) {
+void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 
 	if (playerNum == 1) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -25,6 +25,9 @@ void Character::Input(float deltaTime, int playerNum) {
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			velocity -= deltaTime * 3000.0f;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			*shoot = true;
 	}
 
 	if (playerNum == 2) {
@@ -33,15 +36,10 @@ void Character::Input(float deltaTime, int playerNum) {
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			velocity -= deltaTime * 3000.0f;
-	}
 
-
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		//Shoot(deltaTime, window);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) 
+			*shoot = true;
 	}
-	//cooldown -= deltaTime;
-	*/
 }
 
 void Character::Movement(float deltaTime) {

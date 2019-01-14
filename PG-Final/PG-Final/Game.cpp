@@ -82,22 +82,13 @@ void Game::Play() {
 			}
 		}
 
-		/* SHOOT INPUTS */
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-			isFiring1 = true;
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) {
-			isFiring2 = true;
-		}
-
 		cooldown1 -= deltaTime;
 		cooldown2 -= deltaTime;
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1.Update(deltaTime, 1);
-		player2.Update(deltaTime, 2);
+		player1.Update(deltaTime, 1, &isFiring1);
+		player2.Update(deltaTime, 2, &isFiring2);
 		hud->Update(score1, score2);
 
 		/* SHOOT */
