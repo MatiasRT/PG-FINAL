@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "Constants.h"
 
 Bullet::Bullet(sf::Vector2f size) {
 	bullet.setSize(size);
@@ -9,13 +10,13 @@ Bullet::~Bullet() {
 
 }
 
-void Bullet::Move(int speed, int playerNum) {
+void Bullet::Move(int playerNum) {
 	switch (playerNum) {
 		case 1:
-			bullet.move(0, -speed);
+			bullet.move(constant::BULLER_SPEED_X, -constant::BULLET_SPEED_Y);
 			break;
 		case 2:
-			bullet.move(0, speed);
+			bullet.move(constant::BULLER_SPEED_X, constant::BULLET_SPEED_Y);
 			break;
 	}
 }

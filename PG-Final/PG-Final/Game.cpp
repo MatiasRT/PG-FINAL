@@ -1,8 +1,9 @@
 #include "Game.h"
+#include "Constants.h"
 
 Game::Game() {
-	window.create(sf::VideoMode(800, 600), "Game", sf::Style::Close);
-	window.setFramerateLimit(60);
+	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), "Game", sf::Style::Close);
+	window.setFramerateLimit(constant::FRAMERATE);
 
 	if (!font1.loadFromFile("Assets/beef.ttf")) {
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
@@ -42,16 +43,15 @@ void Game::Play() {
 	std::cout << "Estoy en play" << std::endl;
 
 	/* PLAYERS */
-	Character player1(400, 560);
-	Character player2(400, 40);
+	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y);
+	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y);
 
 	/* BULLETS */
 	std::vector<Bullet> vec1;
 	std::vector<Bullet> vec2;
 
 	/* MISC */
-	score1 = 50000;
-	score2 = 50000;
+	score1 = score2 = constant::INIT_SCORE;
 	sf::Clock clock;
 	hud = new HUD();
 	hud->Game();
@@ -117,12 +117,12 @@ void Game::Play() {
 
 		for (int i = 0; i < vec1.size(); i++) {
 			vec1[i].Draw(window);
-			vec1[i].Move(10, 1);	
+			vec1[i].Move(1);	
 		}
 
 		for (int i = 0; i < vec2.size(); i++) {
 			vec2[i].Draw(window);
-			vec2[i].Move(10, 2);
+			vec2[i].Move(2);
 		}
 
 		/* COLLISIONS */

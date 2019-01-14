@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 #include <SFML/Graphics.hpp>
 #include "Character.h"
 #include "Bullet.h"
@@ -38,3 +39,4 @@ public:
 	void Play();
 	void GameOver(int winner);
 };
+#endif

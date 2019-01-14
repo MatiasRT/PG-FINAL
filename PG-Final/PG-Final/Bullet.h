@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BULLET_H
+#define BULLET_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -6,13 +7,11 @@ class Bullet {
 
 private:
 	sf::RectangleShape bullet;
-	int speed;
-	bool enabled;
 
 public:
 	Bullet(sf::Vector2f size);
 	~Bullet();
-	void Move(int speed, int playerNum);
+	void Move(int playerNum);
 	void Draw(sf::RenderWindow & window);
 	void SetPos(sf::Vector2f pos);
 
@@ -21,3 +20,4 @@ public:
 	int GetLeft() { return bullet.getPosition().x; }
 	int GetRight() { return bullet.getPosition().x + bullet.getSize().x; }
 };
+#endif

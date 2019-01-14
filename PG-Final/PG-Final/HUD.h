@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HUD_H
+#define HUD_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -26,3 +27,4 @@ public:
 	void DrawGame(sf::RenderWindow & window);
 	void DrawOver(sf::RenderWindow & window);
 };
+#endif

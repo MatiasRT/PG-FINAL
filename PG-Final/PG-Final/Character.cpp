@@ -1,7 +1,8 @@
 #include "Character.h"
+#include "Constants.h"
 
 Character::Character(int x, int y) {
-	player.setSize(sf::Vector2f(30, 30));
+	player.setSize(sf::Vector2f(constant::PLAYER_WIDTH, constant::PLAYER_HEIGHT));
 	player.setOrigin(player.getSize().x / 2, player.getSize().y / 2);
 	player.setFillColor(sf::Color(245, 147, 51));
 	player.setPosition(x, y);
@@ -61,12 +62,12 @@ void Character::Movement(float deltaTime) {
 
 
 	/* Limites del jugador */
-	if (player.getPosition().x > 800) {
-		player.setPosition(800, player.getPosition().y);
+	if (player.getPosition().x > constant::WINDOW_MAX_X) {
+		player.setPosition(constant::WINDOW_MAX_X, player.getPosition().y);
 		velocity = 0;
 	}
-	if (player.getPosition().x < 0) {
-		player.setPosition(0, player.getPosition().y);
+	if (player.getPosition().x < constant::WINDOW_MIN_X) {
+		player.setPosition(constant::WINDOW_MIN_X, player.getPosition().y);
 		velocity = 0;
 	}
 
@@ -81,7 +82,7 @@ void Character::Draw(sf::RenderWindow & window) {
 }
 
 void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
-	Bullet bullet(sf::Vector2f(5, 30));
+	Bullet bullet(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
 	bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
 	bulletVec->push_back(bullet);
 }
@@ -89,9 +90,9 @@ void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 void Character::CheckCollision(Bullet bullet, int *score) {
 	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
 		bullet.GetBottom() > player.getPosition().y &&
-		bullet.GetLeft() < player.getPosition().x + player.getSize().x - 15 &&  // 15 es la mitad del player
-		bullet.GetRight() + 15 > player.getPosition().x) {
-		*score += 250;
+		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&  // 15 es la mitad del player
+		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
+		*score += constant::HIT_POINTS;
 		std::cout << "Colision y score:" << *score << std::endl;
 	}
 }

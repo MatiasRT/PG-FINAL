@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CHARACTER_H
+#define CHARACTER_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Bullet.h"
@@ -28,3 +29,4 @@ public:
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }
 };
+#endif

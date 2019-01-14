@@ -136,6 +136,7 @@ copy "$(SolutionDir)SFML-2.5.0\bin\sfml-window-d-2.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HUD.h" />
   </ItemGroup>
