@@ -7,7 +7,7 @@
 enum States {
 	MENU,
 	GAME,
-	END,
+	OVER,
 	EXIT
 };
 
@@ -32,5 +32,5 @@ public:
 
 	void Menu();
 	void Play();
-	void End();
+	void GameOver(int winner);
 };

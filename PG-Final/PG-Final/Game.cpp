@@ -25,8 +25,9 @@ void Game::RunGame() {
 		case GAME:
 			Play();
 			break;
-		case END:
-			End();
+		case OVER:
+			//GameOver();
+			break;
 		case EXIT:
 			break;
 		}
@@ -147,12 +148,88 @@ void Game::Play() {
 			player1.CheckCollision(vec2[i], &score2);
 		}
 
+		/* SCORE MANAGER */
+		if (score1 > 5000) {
+			state = OVER;
+			GameOver(1);
+		}
+		
+		if (score2 > 5000) {
+			state = OVER;
+			GameOver(2);
+		}
+
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();
 	}
 }
 
-void Game::End() {
+void Game::GameOver(int winner) {
 
+	std::string pWin;
+	int finalScore;
+	switch (winner) {
+		case 1:
+			pWin = "PLAYER 1";
+			finalScore = score1;
+			break;
+		case 2:
+			pWin = "PLAYER 2";
+			finalScore = score2;
+			break;
+	}
+
+	sf::Text winText("The Winner Is", font1, 30);
+	winText.setOrigin(std::round(winText.getLocalBounds().width / 2), 20);
+	winText.setPosition((window.getSize().x / 2), 80);
+	winText.setFillColor(sf::Color(245, 147, 51));
+
+	sf::Text playerW(pWin, font1, 25);
+	playerW.setOrigin(std::round(playerW.getLocalBounds().width / 2), 20);
+	playerW.setPosition((window.getSize().x / 2), 250);
+	playerW.setFillColor(sf::Color(245, 147, 51));
+
+	sf::Text score(std::to_string(finalScore), font1, 25);
+	score.setOrigin(std::round(score.getLocalBounds().width / 2), 20);
+	score.setPosition((window.getSize().x / 2), 300);
+	score.setFillColor(sf::Color(245, 147, 51));
+
+	sf::Text menu("Press ENTER to continue", font1, 10);
+	menu.setOrigin(std::round(menu.getLocalBounds().width / 2), 20);
+	menu.setPosition((window.getSize().x / 2), 500);
+	menu.setFillColor(sf::Color(245, 147, 51));
+
+	sf::Text restart("Press R to restart", font1, 10);
+	restart.setOrigin(std::round(restart.getLocalBounds().width / 2), 20);
+	restart.setPosition((window.getSize().x / 2), 550);
+	restart.setFillColor(sf::Color(245, 147, 51));
+
+	while (state == OVER) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			switch (event.type) {
+				case sf::Event::Closed:
+					state = EXIT;
+					break;
+
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Return) {
+						state = MENU;
+					}
+					break;
+			}
+		}
+
+		window.clear(sf::Color(15, 15, 15));
+
+		window.draw(winText);
+		window.draw(playerW);
+		window.draw(score);
+		window.draw(menu);
+		//window.draw(restart);
+		
+
+		window.display();
+	}
 }
