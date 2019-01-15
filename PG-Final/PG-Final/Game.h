@@ -9,6 +9,7 @@
 enum States {
 	MENU,
 	GAME,
+	CONTROLS,
 	OVER,
 	EXIT
 };

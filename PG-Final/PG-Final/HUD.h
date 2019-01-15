@@ -7,6 +7,9 @@ class HUD {
 private:
 	sf::Font font1;
 
+	sf::Text* title;
+	sf::Text* subtitle;
+	sf::Text* control;
 	sf::Text* scoreText1;
 	sf::Text* scoreText2;
 	sf::Text* winText;
@@ -14,6 +17,8 @@ private:
 	sf::Text* score;
 	sf::Text* menu;
 	sf::Text* restart;
+	sf::Sprite* arrowLeft; 
+	sf::Sprite* arrowRight;
 
 public:
 	HUD();
@@ -24,6 +29,7 @@ public:
 	void Over(std::string pWin, int finalScore);
 
 	void Update(int score1, int score2);
+	void DrawMenu(sf::RenderWindow & window);
 	void DrawGame(sf::RenderWindow & window);
 	void DrawOver(sf::RenderWindow & window);
 };

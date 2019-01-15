@@ -19,7 +19,7 @@ void Character::Update(float deltaTime, int playerNum, bool* shoot) {
 }
 
 void Character::Input(float deltaTime, int playerNum, bool* shoot) {
-
+	
 	if (playerNum == 1) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			velocity += deltaTime * 3000.0f;
@@ -29,6 +29,8 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			*shoot = true;
+
+		std::cout << velocity << std::endl;
 	}
 
 	if (playerNum == 2) {
@@ -66,15 +68,13 @@ void Character::Movement(float deltaTime) {
 		player.setPosition(constant::WINDOW_MAX_X, player.getPosition().y);
 		velocity = 0;
 	}
+
 	if (player.getPosition().x < constant::WINDOW_MIN_X) {
 		player.setPosition(constant::WINDOW_MIN_X, player.getPosition().y);
 		velocity = 0;
 	}
 
-	velocity = std::floor(velocity * 10 + 0.5f) / 10;
-
 	player.move(deltaTime * velocity, 0);
-
 }
 
 void Character::Draw(sf::RenderWindow & window) {
@@ -93,6 +93,6 @@ void Character::CheckCollision(Bullet bullet, int *score) {
 		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&  // 15 es la mitad del player
 		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
 		*score += constant::HIT_POINTS;
-		std::cout << "Colision y score:" << *score << std::endl;
+		//std::cout << "Colision y score:" << *score << std::endl;
 	}
 }

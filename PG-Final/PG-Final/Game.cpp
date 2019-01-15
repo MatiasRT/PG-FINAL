@@ -8,6 +8,8 @@ Game::Game() {
 	if (!font1.loadFromFile("Assets/beef.ttf")) {
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
 	}
+
+	hud = new HUD();
 }
 
 Game::~Game() {
@@ -15,8 +17,8 @@ Game::~Game() {
 }
 
 void Game::RunGame() {
-	//state = MENU;
-	state = GAME;
+	state = MENU;
+	//state = GAME;
 
 	while (state != EXIT) {
 		switch (state) {
@@ -25,6 +27,9 @@ void Game::RunGame() {
 			break;
 		case GAME:
 			Play();
+			break;
+		case CONTROLS:
+			//Controls();
 			break;
 		case OVER:
 			GameOver(winner);
@@ -37,6 +42,60 @@ void Game::RunGame() {
 
 void Game::Menu() {
 	std::cout << "Estoy en menu" << std::endl;
+
+	sf::String menuTextString[3] = { "PLAY", "HOWTO", "EXIT" };
+
+	sf::Text menuText(menuTextString[0], font1, 28);
+	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20);
+	menuText.setPosition((800 / 2), 400);
+	menuText.setFillColor(sf::Color(245, 147, 51));
+
+	hud->Menu();
+
+	int menuSelect = 0;
+
+	while (state == MENU) {
+
+		sf::Event event;
+		while (window.pollEvent(event)) {
+
+			switch (event.type) {
+				case sf::Event::Closed:
+					state = EXIT;
+					break;
+
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Escape) 
+						state = EXIT;
+				
+					if (event.key.code == sf::Keyboard::A) 
+						if (menuSelect > 0)
+							menuSelect -= 1;
+					
+					if (event.key.code == sf::Keyboard::D) 
+						if (menuSelect < 2)
+							menuSelect += 1;
+					
+					if (event.key.code == sf::Keyboard::Return) 
+						if (menuSelect == 0)
+							state = GAME;
+						else if (menuSelect == 1)
+							state = CONTROLS;
+							else if (menuSelect == 2)
+								state = EXIT;
+					break;
+			}
+		}
+
+		menuText.setString(menuTextString[menuSelect]);
+
+		window.clear(sf::Color::Black);
+
+		window.draw(menuText);
+		hud->DrawMenu(window);
+
+		window.display();
+	}
 }
 
 void Game::Play() {
@@ -53,7 +112,6 @@ void Game::Play() {
 	/* MISC */
 	score1 = score2 = constant::INIT_SCORE;
 	sf::Clock clock;
-	hud = new HUD();
 	hud->Game();
 
 
@@ -62,20 +120,20 @@ void Game::Play() {
 
 	while (state == GAME) {
 
-		sf::Event evt;
-		while (window.pollEvent(evt)) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
 
-			switch (evt.type) {
+			switch (event.type) {
 
 				case sf::Event::Closed:
 					state = EXIT;
 					break;
 
 				case sf::Event::KeyPressed:
-					if (evt.key.code == sf::Keyboard::Escape) {
+					if (event.key.code == sf::Keyboard::Escape) {
 						state = EXIT;
 					}
-					if (evt.key.code == sf::Keyboard::Return) {
+					if (event.key.code == sf::Keyboard::Return) {
 						state = MENU;
 					}
 					break;
@@ -172,7 +230,6 @@ void Game::GameOver(int winner) {
 			finalScore = score2;
 			break;
 	}
-	hud = new HUD;
 
 	hud->Over(pWin, finalScore);
 
