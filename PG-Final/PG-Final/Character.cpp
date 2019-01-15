@@ -1,15 +1,18 @@
 #include "Character.h"
 #include "Constants.h"
 
-Character::Character(int x, int y) {
+Character::Character(int x, int y, std::string path) {
+
+	texture = new sf::Texture;
+	texture->loadFromFile(path);
 	player.setSize(sf::Vector2f(constant::PLAYER_WIDTH, constant::PLAYER_HEIGHT));
+	player.setTexture(texture);
 	player.setOrigin(player.getSize().x / 2, player.getSize().y / 2);
-	player.setFillColor(sf::Color(245, 147, 51));
 	player.setPosition(x, y);
 }
 
 Character::~Character() {
-
+	delete texture;
 }
 
 void Character::Update(float deltaTime, int playerNum, bool* shoot) {
@@ -90,7 +93,7 @@ void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 void Character::CheckCollision(Bullet bullet, int *score) {
 	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
 		bullet.GetBottom() > player.getPosition().y &&
-		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&  // 15 es la mitad del player
+		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&
 		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
 		*score += constant::HIT_POINTS;
 		//std::cout << "Colision y score:" << *score << std::endl;

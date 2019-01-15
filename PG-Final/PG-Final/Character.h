@@ -9,15 +9,14 @@ class Character {
 private:
 
 	sf::RectangleShape player;
+	sf::Texture* texture;
 
 	float velocity;
 	float cooldown;
 
 public:
-	Character(int x, int y);
+	Character(int x, int y, std::string path);
 	~Character();
-
-	//sf::RectangleShape GetPlayer() { return player; };
 
 	void Update(float deltaTime, int playerNum, bool* shoot);
 	void Input(float deltaTime, int playerNum, bool* shoot);

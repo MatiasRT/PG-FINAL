@@ -102,8 +102,8 @@ void Game::Play() {
 	std::cout << "Estoy en play" << std::endl;
 
 	/* PLAYERS */
-	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y);
-	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y);
+	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, "Assets/RED.png");
+	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, "Assets/BLUE.png");
 
 	/* BULLETS */
 	std::vector<Bullet> vec1;

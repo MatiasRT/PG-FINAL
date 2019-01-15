@@ -15,6 +15,11 @@ HUD::~HUD() {
 	delete control;
 	delete arrowLeft;
 	delete arrowRight;
+	delete menu;
+	delete winText;
+	delete playerW;
+	delete score;
+	delete restart;
 }
 
 void HUD::Menu() {
@@ -51,12 +56,12 @@ void HUD::Game() {
 	scoreText1 = new sf::Text("0", font1, constant::FONT_SIZE1);
 	scoreText1->setOrigin(sf::Vector2f(scoreText1->getLocalBounds().width / 2, 0));
 	scoreText1->setPosition(360, 320);
-	scoreText1->setFillColor(sf::Color(245, 147, 51));
+	scoreText1->setFillColor(sf::Color::Red);
 
 	scoreText2 = new sf::Text("0", font1, constant::FONT_SIZE1);
 	scoreText2->setOrigin(sf::Vector2f(scoreText2->getLocalBounds().width / 2, 0));
 	scoreText2->setPosition(360, 280);
-	scoreText2->setFillColor(sf::Color(245, 245, 0));
+	scoreText2->setFillColor(sf::Color::Blue);
 }
 
 void HUD::Over(std::string pWin, int finalScore) {
@@ -68,12 +73,16 @@ void HUD::Over(std::string pWin, int finalScore) {
 	playerW = new sf::Text(pWin, font1, constant::FONT_SIZE3);
 	playerW->setOrigin(std::round(playerW->getLocalBounds().width / 2), 20);
 	playerW->setPosition((800 / 2), 250);
-	playerW->setFillColor(sf::Color(245, 147, 51));
+	if(pWin == "PLAYER 1")
+		playerW->setFillColor(sf::Color::Red);
+	else playerW->setFillColor(sf::Color::Blue);
 
 	score = new sf::Text(std::to_string(finalScore), font1, constant::FONT_SIZE3);
 	score->setOrigin(std::round(score->getLocalBounds().width / 2), 20);
 	score->setPosition((800 / 2), 300);
-	score->setFillColor(sf::Color(245, 147, 51));
+	if (pWin == "PLAYER 1")
+		score->setFillColor(sf::Color::Red);
+	else score->setFillColor(sf::Color::Blue);
 
 	menu = new sf::Text("Press ENTER to continue", font1, constant::FONT_SIZE4);
 	menu->setOrigin(std::round(menu->getLocalBounds().width / 2), 20);

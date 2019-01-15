@@ -2,8 +2,8 @@
 #define CONSTANTS_H
 
 namespace constant {
-	const int PLAYER_WIDTH = 30;
-	const int PLAYER_HEIGHT = 30;
+	const int PLAYER_WIDTH = 60;
+	const int PLAYER_HEIGHT = 60;
 	const int WINDOW_MIN_X = 0;
 	const int WINDOW_MAX_X = 800;
 	const int HIT_POINTS = 250;
