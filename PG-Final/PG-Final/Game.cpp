@@ -2,7 +2,7 @@
 #include "Constants.h"
 
 Game::Game() {
-	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), "Game", sf::Style::Close);
+	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), "RED VS BLUE", sf::Style::Close);
 	window.setFramerateLimit(constant::FRAMERATE);
 
 	if (!font1.loadFromFile("Assets/beef.ttf")) {
@@ -48,7 +48,7 @@ void Game::Menu() {
 	sf::Text menuText(menuTextString[0], font1, 28);
 	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20);
 	menuText.setPosition((800 / 2), 400);
-	menuText.setFillColor(sf::Color(245, 147, 51));
+	menuText.setFillColor(sf::Color::White);
 
 	hud->Menu();
 
@@ -154,7 +154,7 @@ void Game::Play() {
 		if (isFiring1 == true) {
 			if (cooldown1 <= 0) {
 				cooldown1 = 0.30f;
-				player1.Shoot(&vec1, -30);
+				player1.Shoot(&vec1, -60);
 				isFiring1 = false;
 			}
 		}
@@ -162,7 +162,7 @@ void Game::Play() {
 		if (isFiring2 == true) {
 			if (cooldown2 <= 0) {
 				cooldown2 = 0.30f;
-				player2.Shoot(&vec2, 10);
+				player2.Shoot(&vec2, 30);
 				isFiring2 = false;
 			}
 		}
@@ -249,7 +249,7 @@ void Game::GameOver(int winner) {
 			}
 		}
 
-		window.clear(sf::Color(15, 15, 15));
+		window.clear(sf::Color::Black);
 
 		hud->DrawOver(window);
 

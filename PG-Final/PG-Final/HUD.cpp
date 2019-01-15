@@ -10,8 +10,9 @@ HUD::HUD() {
 HUD::~HUD() {
 	delete scoreText1;
 	delete scoreText2;
-	delete title;
-	delete subtitle;
+	delete title1;
+	delete title2;
+	delete title3;
 	delete control;
 	delete arrowLeft;
 	delete arrowRight;
@@ -24,20 +25,25 @@ HUD::~HUD() {
 
 void HUD::Menu() {
 
-	title = new sf::Text("GAME NAME", font1, 50);
-	title->setOrigin(std::round(title->getLocalBounds().width / 2), 20);
-	title->setPosition((800 / 2), 60);
-	title->setFillColor(sf::Color(245, 147, 51));
+	title1 = new sf::Text("RED", font1, 50);
+	title1->setOrigin(std::round(title1->getLocalBounds().width / 2), 20);
+	title1->setPosition(165, 120);
+	title1->setFillColor(sf::Color::Red);
 
-	subtitle = new sf::Text("BEST GAME", font1, 12);
-	subtitle->setOrigin(std::round(subtitle->getLocalBounds().width / 2), 20);
-	subtitle->setPosition((800 / 2), 145);
-	subtitle->setFillColor(sf::Color(245, 147, 51));
+	title2 = new sf::Text("VS.", font1, 50);
+	title2->setOrigin(std::round(title2->getLocalBounds().width / 2), 20);
+	title2->setPosition(365, 120);
+	title2->setFillColor(sf::Color::White);
+
+	title3 = new sf::Text(" BLUE", font1, 50);
+	title3->setOrigin(std::round(title3->getLocalBounds().width / 2), 20);
+	title3->setPosition(565, 120);
+	title3->setFillColor(sf::Color::Blue);
 
 	control = new sf::Text("Press ENTER to select", font1, 12);
 	control->setOrigin(std::round(control->getLocalBounds().width / 2), 20);
 	control->setPosition((800 / 2), 440);
-	control->setFillColor(sf::Color(245, 147, 51));
+	control->setFillColor(sf::Color::White);
 
 	sf::Texture arrow;
 	arrow.loadFromFile("path a la imagen");
@@ -68,7 +74,7 @@ void HUD::Over(std::string pWin, int finalScore) {
 	winText = new sf::Text("The Winner Is", font1, constant::FONT_SIZE2);
 	winText->setOrigin(std::round(winText->getLocalBounds().width / 2), 20);
 	winText->setPosition((800 / 2), 80);
-	winText->setFillColor(sf::Color(245, 147, 51));
+	winText->setFillColor(sf::Color::White);
 
 	playerW = new sf::Text(pWin, font1, constant::FONT_SIZE3);
 	playerW->setOrigin(std::round(playerW->getLocalBounds().width / 2), 20);
@@ -87,12 +93,12 @@ void HUD::Over(std::string pWin, int finalScore) {
 	menu = new sf::Text("Press ENTER to continue", font1, constant::FONT_SIZE4);
 	menu->setOrigin(std::round(menu->getLocalBounds().width / 2), 20);
 	menu->setPosition((800 / 2), 500);
-	menu->setFillColor(sf::Color(245, 147, 51));
+	menu->setFillColor(sf::Color::White);
 
 	restart = new sf::Text("Press R to restart", font1, constant::FONT_SIZE4);
 	restart->setOrigin(std::round(restart->getLocalBounds().width / 2), 20);
 	restart->setPosition((800 / 2), 550);
-	restart->setFillColor(sf::Color(245, 147, 51));
+	restart->setFillColor(sf::Color::White);
 }
 
 void HUD::Update(int score1, int score2) {
@@ -101,8 +107,9 @@ void HUD::Update(int score1, int score2) {
 }
 
 void HUD::DrawMenu(sf::RenderWindow & window) {
-	window.draw(*title);
-	window.draw(*subtitle);
+	window.draw(*title1);
+	window.draw(*title2);
+	window.draw(*title3);
 	window.draw(*control);
 	//window.draw(*arrowLeft);
 	//window.draw(*arrowRight);

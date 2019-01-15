@@ -7,8 +7,9 @@ class HUD {
 private:
 	sf::Font font1;
 
-	sf::Text* title;
-	sf::Text* subtitle;
+	sf::Text* title1;
+	sf::Text* title2;
+	sf::Text* title3;
 	sf::Text* control;
 	sf::Text* scoreText1;
 	sf::Text* scoreText2;

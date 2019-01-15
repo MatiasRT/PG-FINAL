@@ -3,7 +3,7 @@
 
 Bullet::Bullet(sf::Vector2f size) {
 	bullet.setSize(size);
-	bullet.setFillColor(sf::Color(245, 147, 51));
+	bullet.setFillColor(sf::Color::White);
 }
 
 Bullet::~Bullet() {
