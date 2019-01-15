@@ -32,8 +32,6 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			*shoot = true;
-
-		std::cout << velocity << std::endl;
 	}
 
 	if (playerNum == 2) {

@@ -5,10 +5,9 @@ Game::Game() {
 	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), "RED VS BLUE", sf::Style::Close);
 	window.setFramerateLimit(constant::FRAMERATE);
 
-	if (!font1.loadFromFile("Assets/beef.ttf")) {
+	if (!font1.loadFromFile("Assets/beef.ttf")) 
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
-	}
-
+	
 	hud = new HUD();
 }
 
@@ -29,7 +28,7 @@ void Game::RunGame() {
 			Play();
 			break;
 		case CONTROLS:
-			//Controls();
+			Controls();
 			break;
 		case OVER:
 			GameOver(winner);
@@ -213,6 +212,36 @@ void Game::Play() {
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();
+	}
+}
+
+void Game::Controls() {
+
+	sf::Texture howtoTexture;
+	if (!howtoTexture.loadFromFile("Assets/HOW_TO.png")) 
+		std::cout << "Error: howtoTexture loadFromFile failed" << std::endl;
+	sf::Sprite howto(howtoTexture);
+
+	while (state == CONTROLS) {
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			switch (event.type) {
+			case sf::Event::Closed:
+				state = EXIT;
+				break;
+
+			case sf::Event::KeyPressed:
+				if (event.key.code == sf::Keyboard::Return) {
+					state = MENU;
+				}
+				break;
+			}
+		}
+
+		window.clear(sf::Color::Black);
+		window.draw(howto);
+
+		window.display();
 	}
 }
 

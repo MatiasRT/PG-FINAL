@@ -2,9 +2,8 @@
 #include "Constants.h"
 
 HUD::HUD() {
-	if (!font1.loadFromFile("Assets/beef.ttf")) {
+	if (!font1.loadFromFile("Assets/beef.ttf")) 
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
-	}
 }
 
 HUD::~HUD() {

@@ -38,6 +38,7 @@ public:
 	void RunGame();
 	void Menu();
 	void Play();
+	void Controls();
 	void GameOver(int winner);
 };
 #endif
