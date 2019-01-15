@@ -13,8 +13,6 @@ HUD::~HUD() {
 	delete title2;
 	delete title3;
 	delete control;
-	delete arrowLeft;
-	delete arrowRight;
 	delete menu;
 	delete winText;
 	delete playerW;
@@ -41,20 +39,9 @@ void HUD::Menu() {
 
 	control = new sf::Text("Press ENTER to select", font1, 12);
 	control->setOrigin(std::round(control->getLocalBounds().width / 2), 20);
-	control->setPosition((800 / 2), 440);
+	control->setPosition((800 / 2), 460);
 	control->setFillColor(sf::Color::White);
 
-	sf::Texture arrow;
-	arrow.loadFromFile("path a la imagen");
-
-	arrowLeft = new sf::Sprite(arrow);
-	arrowLeft->setOrigin(arrowLeft->getLocalBounds().width / 2, 4);
-	arrowLeft->setPosition((800 / 2 + 50), 400);
-
-	arrowRight = new sf::Sprite(arrow);
-	arrowRight->setOrigin(arrowRight->getLocalBounds().width / 2, 4);
-	arrowRight->setPosition((800 / 2 - 45), 400);
-	arrowRight->setScale(-1, 1);
 }
 
 void HUD::Game() {
@@ -110,8 +97,6 @@ void HUD::DrawMenu(sf::RenderWindow & window) {
 	window.draw(*title2);
 	window.draw(*title3);
 	window.draw(*control);
-	//window.draw(*arrowLeft);
-	//window.draw(*arrowRight);
 }
 
 void HUD::DrawGame(sf::RenderWindow & window) {

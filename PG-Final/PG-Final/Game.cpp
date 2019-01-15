@@ -17,7 +17,6 @@ Game::~Game() {
 
 void Game::RunGame() {
 	state = MENU;
-	//state = GAME;
 
 	while (state != EXIT) {
 		switch (state) {
@@ -41,6 +40,17 @@ void Game::RunGame() {
 
 void Game::Menu() {
 	std::cout << "Estoy en menu" << std::endl;
+
+	sf::Texture arrow;
+	if (!arrow.loadFromFile("Assets/Arrow.png"))
+		std::cout << "Error: arrow loadFromFile failed" << std::endl;
+
+	sf::Sprite arrowLeft(arrow);
+	arrowLeft.setPosition(610, 375);
+	arrowLeft.setScale(-1, 1);
+
+	sf::Sprite arrowRight(arrow);
+	arrowRight.setPosition(190, 375);
 
 	sf::String menuTextString[3] = { "PLAY", "HOWTO", "EXIT" };
 
@@ -91,6 +101,8 @@ void Game::Menu() {
 		window.clear(sf::Color::Black);
 
 		window.draw(menuText);
+		window.draw(arrowLeft);
+		window.draw(arrowRight);
 		hud->DrawMenu(window);
 
 		window.display();
@@ -129,12 +141,10 @@ void Game::Play() {
 					break;
 
 				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Escape) {
+					if (event.key.code == sf::Keyboard::Escape) 
 						state = EXIT;
-					}
-					if (event.key.code == sf::Keyboard::Return) {
-						state = MENU;
-					}
+					if (event.key.code == sf::Keyboard::Return) 
+						state = MENU;	
 					break;
 			}
 		}
@@ -231,9 +241,8 @@ void Game::Controls() {
 				break;
 
 			case sf::Event::KeyPressed:
-				if (event.key.code == sf::Keyboard::Return) {
+				if (event.key.code == sf::Keyboard::Return)
 					state = MENU;
-				}
 				break;
 			}
 		}
@@ -271,9 +280,8 @@ void Game::GameOver(int winner) {
 					break;
 
 				case sf::Event::KeyPressed:
-					if (event.key.code == sf::Keyboard::Return) {
+					if (event.key.code == sf::Keyboard::Return) 
 						state = MENU;
-					}
 					break;
 			}
 		}

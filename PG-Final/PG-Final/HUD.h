@@ -19,9 +19,6 @@ private:
 	sf::Text* menu;
 	sf::Text* restart;
 
-	sf::Sprite* arrowLeft; 
-	sf::Sprite* arrowRight;
-
 public:
 	HUD();
 	~HUD();

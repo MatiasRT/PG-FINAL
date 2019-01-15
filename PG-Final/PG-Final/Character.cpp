@@ -93,7 +93,7 @@ void Character::CheckCollision(Bullet bullet, int *score) {
 		bullet.GetBottom() > player.getPosition().y &&
 		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&
 		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
-		*score += constant::HIT_POINTS;
-		//std::cout << "Colision y score:" << *score << std::endl;
+		if(*score < 100000)
+			*score += constant::HIT_POINTS;
 	}
 }
