@@ -67,14 +67,20 @@ void HUD::Over(std::string pWin, int finalScore) {
 	playerW->setPosition((800 / 2), 250);
 	if(pWin == "PLAYER 1")
 		playerW->setFillColor(sf::Color::Red);
-	else playerW->setFillColor(sf::Color::Blue);
+	else if (pWin == "PLAYER 2")
+		playerW->setFillColor(sf::Color::Blue);
+	else 
+		playerW->setFillColor(sf::Color::Magenta);
 
 	score = new sf::Text(std::to_string(finalScore), font1, constant::FONT_SIZE3);
 	score->setOrigin(std::round(score->getLocalBounds().width / 2), 20);
 	score->setPosition((800 / 2), 300);
 	if (pWin == "PLAYER 1")
 		score->setFillColor(sf::Color::Red);
-	else score->setFillColor(sf::Color::Blue);
+	else if (pWin == "PLAYER 2")
+		score->setFillColor(sf::Color::Blue);
+	else
+		playerW->setFillColor(sf::Color::Magenta);
 
 	menu = new sf::Text("Press ENTER to continue", font1, constant::FONT_SIZE4);
 	menu->setOrigin(std::round(menu->getLocalBounds().width / 2), 20);

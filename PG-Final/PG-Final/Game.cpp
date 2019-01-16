@@ -202,7 +202,6 @@ void Game::Play() {
 		}
 
 		/* SCORE MANAGER */
-		/* FALTA PROGRAMAR EMPATE */
 		if (timer <= 0) {
 			timer = 0.22f;
 			score1 -= 500;
@@ -218,7 +217,11 @@ void Game::Play() {
 			winner = 1;
 			state = OVER;
 		}
-
+		
+		if (score1 == 0 && score2 == 0) {
+			winner = 3;
+			state = OVER;
+		}
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();
@@ -266,6 +269,10 @@ void Game::GameOver(int winner) {
 		case 2:
 			pWin = "PLAYER 2";
 			finalScore = score2;
+			break;
+		case 3:
+			pWin = "NOBODY!... WAIT, REALLY?";
+			finalScore = 0;
 			break;
 	}
 
