@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "Bullet.h"
 
@@ -10,6 +11,14 @@ private:
 
 	sf::RectangleShape player;
 	sf::Texture* texture;
+
+	sf::SoundBuffer atkBufferRED;
+	sf::SoundBuffer atkBufferBLUE;
+	sf::SoundBuffer hitBuffer;
+
+	sf::Sound atkRED;
+	sf::Sound atkBLUE;
+	sf::Sound hit;
 
 	float velocity;
 	float cooldown;

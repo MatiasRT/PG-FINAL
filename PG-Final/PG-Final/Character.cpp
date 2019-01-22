@@ -9,6 +9,18 @@ Character::Character(int x, int y, std::string path) {
 	player.setTexture(texture);
 	player.setOrigin(player.getSize().x / 2, player.getSize().y / 2);
 	player.setPosition(x, y);
+
+	atkBufferRED.loadFromFile(constant::SHOOT_RED);
+	atkBufferBLUE.loadFromFile(constant::SHOOT_BLUE);
+	hitBuffer.loadFromFile(constant::HIT_RED);
+
+	atkRED.setBuffer(atkBufferRED);
+	atkRED.setVolume(40);
+	atkBLUE.setBuffer(atkBufferBLUE);
+	atkBLUE.setVolume(40);
+
+	hit.setBuffer(hitBuffer);
+	hit.setVolume(40);
 }
 
 Character::~Character() {
@@ -30,8 +42,10 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			velocity -= deltaTime * 3000.0f;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !*shoot) {
 			*shoot = true;
+			atkRED.play();
+		}
 	}
 
 	if (playerNum == 2) {
@@ -41,8 +55,10 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			velocity -= deltaTime * 3000.0f;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !*shoot) {
 			*shoot = true;
+			atkBLUE.play();
+		}
 	}
 }
 
@@ -89,10 +105,18 @@ void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
 }
 
 void Character::CheckCollision(Bullet bullet, int *score) {
+
+	//bool isHit = false;
+
 	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
 		bullet.GetBottom() > player.getPosition().y &&
 		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&
 		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
+		//if (!isHit) {
+			//isHit = true;
+			hit.play();
+			//isHit = false;
+		//}
 		if(*score < 100000)
 			*score += constant::HIT_POINTS;
 	}

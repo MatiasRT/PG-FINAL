@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Character.h"
 #include "Bullet.h"
 #include "HUD.h"
@@ -18,6 +19,8 @@ class Game {
 private:
 	States state;
 	HUD* hud;
+
+	sf::Music mainMusic;
 
 	float cooldown1;
 	float cooldown2;

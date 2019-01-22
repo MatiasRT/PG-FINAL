@@ -9,6 +9,11 @@ Game::Game() {
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
 	
 	hud = new HUD();
+
+	mainMusic.openFromFile(constant::MAIN_MUSIC);
+	mainMusic.setVolume(80);
+	mainMusic.play();
+	mainMusic.setLoop(true);
 }
 
 Game::~Game() {
@@ -112,6 +117,11 @@ void Game::Menu() {
 void Game::Play() {
 	std::cout << "Estoy en play" << std::endl;
 
+	sf::Texture background;
+	if (!background.loadFromFile("Assets/BKG.png"))
+		std::cout << "Error: howtoTexture loadFromFile failed" << std::endl;
+	sf::Sprite bkg(background);
+
 	/* PLAYERS */
 	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, "Assets/RED.png");
 	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, "Assets/BLUE.png");
@@ -178,6 +188,7 @@ void Game::Play() {
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);
+		window.draw(bkg);
 		player1.Draw(window);
 		player2.Draw(window);
 		hud->DrawGame(window);

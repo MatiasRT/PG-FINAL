@@ -1,5 +1,6 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
+#include <string>
 
 namespace constant {
 	/* PLAYER */
@@ -34,5 +35,13 @@ namespace constant {
 	/* MISC */
 	const int FRAMERATE = 60;
 	const int INIT_SCORE = 50000;
+
+	/* ROUTES */
+	const std::string MAIN_MUSIC = "Assets/Music/Play.wav";
+	const std::string SHOOT_RED = "Assets/Music/Shoot_RED.wav";
+	const std::string SHOOT_BLUE = "Assets/Music/Shoot_BLUE.wav";
+	const std::string HIT_RED = "Assets/Music/Hit_RED.wav";
+	const std::string HIT_BLUE = "Assets/Music/Hit_BLUE.wav";
+
 }
 #endif
