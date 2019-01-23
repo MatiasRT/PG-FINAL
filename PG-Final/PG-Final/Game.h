@@ -5,15 +5,9 @@
 #include "Character.h"
 #include "Bullet.h"
 #include "HUD.h"
+#include "States.h"
+#include "Score.h"
 #include <iostream>
-
-enum States {
-	MENU,
-	GAME,
-	CONTROLS,
-	OVER,
-	EXIT
-};
 
 class Game {
 private:

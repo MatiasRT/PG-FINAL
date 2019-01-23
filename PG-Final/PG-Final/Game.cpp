@@ -132,7 +132,7 @@ void Game::Play() {
 	score1 = score2 = constant::INIT_SCORE;
 	sf::Clock clock;
 	hud->Game();
-
+	Score score;
 
 	bool isFiring1 = false;
 	bool isFiring2 = false;
@@ -165,6 +165,7 @@ void Game::Play() {
 		player1.Update(deltaTime, constant::PLAYER_RED, &isFiring1);
 		player2.Update(deltaTime, constant::PLAYER_BLUE, &isFiring2);
 		hud->Update(score1, score2);
+		score.Update(timer, score1, score2, winner, state);
 
 		/* SHOOT */
 		/* FALTA ELIMINAR LAS BALAS */
@@ -210,27 +211,6 @@ void Game::Play() {
 			player1.CheckCollision(vec2[i], &score2);
 		}
 
-		/* SCORE MANAGER */
-		if (timer <= 0) {
-			timer = 0.22f;
-			score1 -= 500;
-			score2 -= 500;
-		}
-
-		if (score1 < 0) {
-			winner = 2;
-			state = OVER;
-		}
-		
-		if (score2 < 0) {
-			winner = 1;
-			state = OVER;
-		}
-		
-		if (score1 == 0 && score2 == 0) {
-			winner = 3;
-			state = OVER;
-		}
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();
 		clock.restart();
@@ -272,15 +252,15 @@ void Game::GameOver(int winner) {
 	int finalScore;
 	switch (winner) {
 		case 1:
-			pWin = "PLAYER 1";
+			pWin = constant::PLAYER1;
 			finalScore = score1;
 			break;
 		case 2:
-			pWin = "PLAYER 2";
+			pWin = constant::PLAYER2;
 			finalScore = score2;
 			break;
 		case 3:
-			pWin = "NOBODY!... WAIT, REALLY?";
+			pWin = constant::TIE;
 			finalScore = 0;
 			break;
 	}

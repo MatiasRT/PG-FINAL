@@ -75,6 +75,9 @@ namespace constant {
 	const std::string PLAY = "PLAY";
 	const std::string HOW_TO = "HOWTO";
 	const std::string EXIT = "EXIT";
+	const std::string PLAYER1 = "PLAYER 1";
+	const std::string PLAYER2 = "PLAYER 2";
+	const std::string TIE = "NOBODY!... WAIT, REALLY?";
 
 }
 #endif
