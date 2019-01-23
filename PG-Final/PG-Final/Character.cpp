@@ -15,12 +15,12 @@ Character::Character(int x, int y, std::string path) {
 	hitBuffer.loadFromFile(constant::HIT_RED);
 
 	atkRED.setBuffer(atkBufferRED);
-	atkRED.setVolume(40);
+	atkRED.setVolume(constant::ATK_VOLUME);
 	atkBLUE.setBuffer(atkBufferBLUE);
-	atkBLUE.setVolume(40);
+	atkBLUE.setVolume(constant::ATK_VOLUME);
 
 	hit.setBuffer(hitBuffer);
-	hit.setVolume(40);
+	hit.setVolume(constant::HIT_VOLUME);
 }
 
 Character::~Character() {
@@ -35,12 +35,12 @@ void Character::Update(float deltaTime, int playerNum, bool* shoot) {
 
 void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 	
-	if (playerNum == 1) {
+	if (playerNum == constant::PLAYER_RED) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			velocity += deltaTime * 3000.0f;
+			velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			velocity -= deltaTime * 3000.0f;
+			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !*shoot) {
 			*shoot = true;
@@ -48,12 +48,12 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 		}
 	}
 
-	if (playerNum == 2) {
+	if (playerNum == constant::PLAYER_BLUE) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			velocity += deltaTime * 3000.0f;
+			velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			velocity -= deltaTime * 3000.0f;
+			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !*shoot) {
 			*shoot = true;
@@ -65,19 +65,19 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 void Character::Movement(float deltaTime) {
 	
 	/* Velocidad maxima del jugador */
-	if (velocity > 500.0f)
-		velocity = 500.0f;
+	if (velocity > constant::MAX_VELOCITY)
+		velocity = constant::MAX_VELOCITY;
 
-	if (velocity < -500.0f)
-		velocity = -500.0f;
+	if (velocity < -constant::MAX_VELOCITY)
+		velocity = -constant::MAX_VELOCITY;
 
 
 	/* Friccion del jugador */
 	if (velocity > 0)
-		velocity -= deltaTime * 1000.0f;
+		velocity -= deltaTime * constant::VELOCITY_FRICTION;
 
 	if (velocity < 0)
-		velocity += deltaTime * 1000.0f;
+		velocity += deltaTime * constant::VELOCITY_FRICTION;
 
 
 	/* Limites del jugador */
@@ -117,7 +117,7 @@ void Character::CheckCollision(Bullet bullet, int *score) {
 			hit.play();
 			//isHit = false;
 		//}
-		if(*score < 100000)
+		if(*score < constant::MAX_SCORE)
 			*score += constant::HIT_POINTS;
 	}
 }

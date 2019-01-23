@@ -2,16 +2,16 @@
 #include "Constants.h"
 
 Game::Game() {
-	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), "RED VS BLUE", sf::Style::Close);
+	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), constant::GAME_NAME, sf::Style::Close);
 	window.setFramerateLimit(constant::FRAMERATE);
 
-	if (!font1.loadFromFile("Assets/beef.ttf")) 
+	if (!font1.loadFromFile(constant::FONT)) 
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
 	
 	hud = new HUD();
 
 	mainMusic.openFromFile(constant::MAIN_MUSIC);
-	mainMusic.setVolume(80);
+	mainMusic.setVolume(constant::MUSIC_VOLUME);
 	mainMusic.play();
 	mainMusic.setLoop(true);
 }
@@ -44,24 +44,23 @@ void Game::RunGame() {
 }
 
 void Game::Menu() {
-	std::cout << "Estoy en menu" << std::endl;
 
 	sf::Texture arrow;
-	if (!arrow.loadFromFile("Assets/Arrow.png"))
+	if (!arrow.loadFromFile(constant::TEXTURE_ARROW))
 		std::cout << "Error: arrow loadFromFile failed" << std::endl;
 
 	sf::Sprite arrowLeft(arrow);
-	arrowLeft.setPosition(610, 375);
+	arrowLeft.setPosition(constant::ARROWLEFT_POSITION_X, constant::ARROWLEFT_POSITION_Y);
 	arrowLeft.setScale(-1, 1);
 
 	sf::Sprite arrowRight(arrow);
-	arrowRight.setPosition(190, 375);
+	arrowRight.setPosition(constant::ARROWRIGHT_POSITION_X, constant::ARROWRIGHT_POSITION_Y);
 
-	sf::String menuTextString[3] = { "PLAY", "HOWTO", "EXIT" };
+	sf::String menuTextString[3] = { constant::PLAY, constant::HOW_TO, constant::EXIT };
 
-	sf::Text menuText(menuTextString[0], font1, 28);
+	sf::Text menuText(menuTextString[0], font1, constant::FONT_SIZE5);
 	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20);
-	menuText.setPosition((800 / 2), 400);
+	menuText.setPosition(constant::MENU_TEXT_X, constant::MENU_TEXT_Y);
 	menuText.setFillColor(sf::Color::White);
 
 	hud->Menu();
@@ -115,16 +114,15 @@ void Game::Menu() {
 }
 
 void Game::Play() {
-	std::cout << "Estoy en play" << std::endl;
 
 	sf::Texture background;
-	if (!background.loadFromFile("Assets/BKG.png"))
+	if (!background.loadFromFile(constant::BACKGROUND))
 		std::cout << "Error: howtoTexture loadFromFile failed" << std::endl;
 	sf::Sprite bkg(background);
 
 	/* PLAYERS */
-	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, "Assets/RED.png");
-	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, "Assets/BLUE.png");
+	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, constant::P_RED);
+	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, constant::P_BLUE);
 
 	/* BULLETS */
 	std::vector<Bullet> vec1;
@@ -164,24 +162,24 @@ void Game::Play() {
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1.Update(deltaTime, 1, &isFiring1);
-		player2.Update(deltaTime, 2, &isFiring2);
+		player1.Update(deltaTime, constant::PLAYER_RED, &isFiring1);
+		player2.Update(deltaTime, constant::PLAYER_BLUE, &isFiring2);
 		hud->Update(score1, score2);
 
 		/* SHOOT */
 		/* FALTA ELIMINAR LAS BALAS */
 		if (isFiring1 == true) {
 			if (cooldown1 <= 0) {
-				cooldown1 = 0.30f;
-				player1.Shoot(&vec1, -60);
+				cooldown1 = constant::COOLDOWN;
+				player1.Shoot(&vec1, constant::SHOOT1_OFFSET);
 				isFiring1 = false;
 			}
 		}
 
 		if (isFiring2 == true) {
 			if (cooldown2 <= 0) {
-				cooldown2 = 0.30f;
-				player2.Shoot(&vec2, 30);
+				cooldown2 = constant::COOLDOWN;
+				player2.Shoot(&vec2, constant::SHOOT2_OFFSET);
 				isFiring2 = false;
 			}
 		}
@@ -195,12 +193,12 @@ void Game::Play() {
 
 		for (int i = 0; i < vec1.size(); i++) {
 			vec1[i].Draw(window);
-			vec1[i].Move(1);	
+			vec1[i].Move(constant::PLAYER_RED);	
 		}
 
 		for (int i = 0; i < vec2.size(); i++) {
 			vec2[i].Draw(window);
-			vec2[i].Move(2);
+			vec2[i].Move(constant::PLAYER_BLUE);
 		}
 
 		/* COLLISIONS */
@@ -242,7 +240,7 @@ void Game::Play() {
 void Game::Controls() {
 
 	sf::Texture howtoTexture;
-	if (!howtoTexture.loadFromFile("Assets/HOW_TO.png")) 
+	if (!howtoTexture.loadFromFile(constant::TEXTURE_HOWTO))
 		std::cout << "Error: howtoTexture loadFromFile failed" << std::endl;
 	sf::Sprite howto(howtoTexture);
 
