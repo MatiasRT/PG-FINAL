@@ -172,7 +172,7 @@ void Game::Play() {
 		if (isFiring1 == true) {
 			if (cooldown1 <= 0) {
 				cooldown1 = constant::COOLDOWN;
-				player1.Shoot(&vec1, constant::SHOOT1_OFFSET);
+				player1.Shoot(vec1, constant::SHOOT1_OFFSET);
 				isFiring1 = false;
 			}
 		}
@@ -180,7 +180,7 @@ void Game::Play() {
 		if (isFiring2 == true) {
 			if (cooldown2 <= 0) {
 				cooldown2 = constant::COOLDOWN;
-				player2.Shoot(&vec2, constant::SHOOT2_OFFSET);
+				player2.Shoot(vec2, constant::SHOOT2_OFFSET);
 				isFiring2 = false;
 			}
 		}
@@ -204,11 +204,11 @@ void Game::Play() {
 
 		/* COLLISIONS */
 		for (int i = 0; i < vec1.size(); i++) {
-			player2.CheckCollision(vec1[i], &score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
+			player2.CheckCollision(vec1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
 		}
 
 		for (int i = 0; i < vec2.size(); i++) {
-			player1.CheckCollision(vec2[i], &score2);
+			player1.CheckCollision(vec2[i], score2);
 		}
 
 		window.display();

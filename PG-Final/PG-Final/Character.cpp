@@ -98,13 +98,13 @@ void Character::Draw(sf::RenderWindow & window) {
 	window.draw(player);
 }
 
-void Character::Shoot(std::vector<Bullet>* bulletVec, int offset) {
+void Character::Shoot(std::vector<Bullet>& bulletVec, int offset) {
 	Bullet bullet(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
 	bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
-	bulletVec->push_back(bullet);
+	bulletVec.push_back(bullet);
 }
 
-void Character::CheckCollision(Bullet bullet, int *score) {
+void Character::CheckCollision(Bullet bullet, int &score) {
 
 	//bool isHit = false;
 
@@ -117,7 +117,7 @@ void Character::CheckCollision(Bullet bullet, int *score) {
 			hit.play();
 			//isHit = false;
 		//}
-		if(*score < constant::MAX_SCORE)
-			*score += constant::HIT_POINTS;
+		if(score < constant::MAX_SCORE)
+			score += constant::HIT_POINTS;
 	}
 }
