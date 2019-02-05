@@ -162,8 +162,8 @@ void Game::Play() {
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1.Update(deltaTime, constant::PLAYER_RED, &isFiring1);
-		player2.Update(deltaTime, constant::PLAYER_BLUE, &isFiring2);
+		player1.Update(deltaTime, constant::PLAYER_RED, isFiring1);
+		player2.Update(deltaTime, constant::PLAYER_BLUE, isFiring2);
 		hud->Update(score1, score2);
 		score.Update(timer, score1, score2, winner, state);
 

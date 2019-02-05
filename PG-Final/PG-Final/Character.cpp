@@ -27,13 +27,13 @@ Character::~Character() {
 	delete texture;
 }
 
-void Character::Update(float deltaTime, int playerNum, bool* shoot) {
+void Character::Update(float deltaTime, int playerNum, bool& shoot) {
 	Movement(deltaTime);
 
 	Input(deltaTime, playerNum, shoot);
 }
 
-void Character::Input(float deltaTime, int playerNum, bool* shoot) {
+void Character::Input(float deltaTime, int playerNum, bool& shoot) {
 	
 	if (playerNum == constant::PLAYER_RED) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -42,8 +42,8 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !*shoot) {
-			*shoot = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !shoot) {
+			shoot = true;
 			atkRED.play();
 		}
 	}
@@ -55,8 +55,8 @@ void Character::Input(float deltaTime, int playerNum, bool* shoot) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !*shoot) {
-			*shoot = true;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !shoot) {
+			shoot = true;
 			atkBLUE.play();
 		}
 	}

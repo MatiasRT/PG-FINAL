@@ -27,8 +27,8 @@ public:
 	Character(int x, int y, std::string path);
 	~Character();
 
-	void Update(float deltaTime, int playerNum, bool* shoot);
-	void Input(float deltaTime, int playerNum, bool* shoot);
+	void Update(float deltaTime, int playerNum, bool& shoot);
+	void Input(float deltaTime, int playerNum, bool& shoot);
 	void Movement(float deltaTime);
 	void Draw(sf::RenderWindow & window);
 	void Shoot(std::vector<Bullet>& bulletVec, int offset);
