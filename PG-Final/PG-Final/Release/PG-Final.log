@@ -1,0 +1,129 @@
+﻿          1 archivo(s) copiado(s).
+          1 archivo(s) copiado(s).
+          1 archivo(s) copiado(s).
+          1 archivo(s) copiado(s).
+  Bullet.cpp
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(18): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(19): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(20): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(21): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  Character.cpp
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(18): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(19): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(20): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(21): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(37): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(38): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.cpp(11): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Game.cpp
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(18): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(19): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(20): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(21): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(37): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(38): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\game.cpp(195): warning C4018: '<': no coinciden signed/unsigned
+d:\repositories\pg-final\pg-final\pg-final\game.cpp(200): warning C4018: '<': no coinciden signed/unsigned
+d:\repositories\pg-final\pg-final\pg-final\game.cpp(206): warning C4018: '<': no coinciden signed/unsigned
+d:\repositories\pg-final\pg-final\pg-final\game.cpp(210): warning C4018: '<': no coinciden signed/unsigned
+  HUD.cpp
+  main.cpp
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(18): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(19): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(20): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\bullet.h(21): warning C4244: 'return': conversión de 'T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(37): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+d:\repositories\pg-final\pg-final\pg-final\character.h(38): warning C4244: 'return': conversión de 'const T' a 'int'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  Score.cpp
+  Generando código
+  All 362 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  PG-Final.vcxproj -> D:\Repositories\PG-FINAL\PG-Final\Release\PG-Final.exe

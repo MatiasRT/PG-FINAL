@@ -204,7 +204,7 @@ void Game::Play() {
 
 		/* COLLISIONS */
 		for (int i = 0; i < vec1.size(); i++) {
-			player2.CheckCollision(vec1[i], &score1);
+			player2.CheckCollision(vec1[i], &score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
 		}
 
 		for (int i = 0; i < vec2.size(); i++) {
