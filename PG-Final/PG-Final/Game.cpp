@@ -9,15 +9,13 @@ Game::Game() {
 		std::cout << "Error: Font1 loadFromFile failed" << std::endl;
 	
 	hud = new HUD();
-
-	mainMusic.openFromFile(constant::MAIN_MUSIC);
-	mainMusic.setVolume(constant::MUSIC_VOLUME);
-	mainMusic.play();
-	mainMusic.setLoop(true);
+	music = new MusicManager();
+	music->PlayMusic();
 }
 
 Game::~Game() {
 	delete hud;
+	delete music;
 }
 
 void Game::RunGame() {

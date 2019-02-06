@@ -7,14 +7,14 @@
 #include "HUD.h"
 #include "States.h"
 #include "Score.h"
+#include "MusicManager.h"
 #include <iostream>
 
 class Game {
 private:
 	States state;
 	HUD* hud;
-
-	sf::Music mainMusic;
+	MusicManager* music;
 
 	float cooldown1;
 	float cooldown2;
