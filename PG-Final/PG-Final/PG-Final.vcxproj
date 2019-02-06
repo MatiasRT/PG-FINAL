@@ -69,7 +69,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Binaries\$(Configuration)\</OutDir>
+    <IntDir>Objets\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Binaries\$(Configuration)\</OutDir>
+    <IntDir>Objets\$(Configuration)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -84,11 +91,11 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)SFML-2.5.0\bin\sfml-graphics-d-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-system-d-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-audio-d-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-window-d-2.dll" "$(OutDir)"
-copy "$(SolutionDir)Visual Leak Detector\bin\Win32\" "$(OutDir)"</Command>
+      <Command>COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-graphics-d-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-system-d-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-audio-d-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-window-d-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)Visual Leak Detector\bin\Win32\" "$(OutDir)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -122,11 +129,18 @@ copy "$(SolutionDir)Visual Leak Detector\bin\Win32\" "$(OutDir)"</Command>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)SFML-2.5.0\bin\sfml-graphics-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-system-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-audio-2.dll" "$(OutDir)"
-copy "$(SolutionDir)SFML-2.5.0\bin\sfml-window-2.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-graphics-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-system-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-audio-2.dll" "$(OutDir)"
+COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-window-2.dll" "$(OutDir)"
+XCOPY "$(SolutionDir)PG-Final\Assets" "$(OutDir)\Assets" /e /i
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
