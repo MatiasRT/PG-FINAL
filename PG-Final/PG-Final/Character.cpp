@@ -21,6 +21,8 @@ Character::Character(int x, int y, std::string path) {
 
 	hit.setBuffer(hitBuffer);
 	hit.setVolume(constant::HIT_VOLUME);
+	inputLag1 = 0.0f;
+	inputLag2 = 0.0f;
 }
 
 Character::~Character() {
@@ -34,8 +36,10 @@ void Character::Update(float deltaTime, int playerNum, bool& shoot) {
 }
 
 void Character::Input(float deltaTime, int playerNum, bool& shoot) {
-	
+
 	if (playerNum == constant::PLAYER_RED) {
+		inputLag1 += deltaTime;
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
@@ -43,12 +47,17 @@ void Character::Input(float deltaTime, int playerNum, bool& shoot) {
 			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !shoot) {
-			shoot = true;
-			atkRED.play();
+			if (inputLag1 > 0.42f) {
+				shoot = true;
+				atkRED.play();
+				inputLag1 = 0.0f;
+			}
 		}
 	}
 
 	if (playerNum == constant::PLAYER_BLUE) {
+		inputLag2 += deltaTime;
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
@@ -56,8 +65,11 @@ void Character::Input(float deltaTime, int playerNum, bool& shoot) {
 			velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !shoot) {
-			shoot = true;
-			atkBLUE.play();
+			if (inputLag2 > 0.42f) {
+				shoot = true;
+				atkBLUE.play();
+				inputLag2 = 0.0f;
+			}
 		}
 	}
 }
@@ -98,10 +110,20 @@ void Character::Draw(sf::RenderWindow & window) {
 	window.draw(player);
 }
 
-void Character::Shoot(std::vector<Bullet>& bulletVec, int offset) {
-	Bullet bullet(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
+void Character::Shoot(std::queue<Bullet*>* bulletQ, std::vector<Bullet>& vec, int offset) {
+	/*Bullet bullet(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
 	bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
-	bulletVec.push_back(bullet);
+	bulletVec.push_back(bullet);*/
+
+	Bullet* bullet = bulletQ->front();
+	bullet->SetActive(true);
+	bullet->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
+	vec.push_back(*bullet);
+	if(!bulletQ->empty())
+		bulletQ->pop();
+	else
+		std::cout << bulletQ->size() << std::endl;
+
 }
 
 void Character::CheckCollision(Bullet bullet, int &score) {

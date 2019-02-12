@@ -9,12 +9,17 @@
 #include "Score.h"
 #include "MusicManager.h"
 #include <iostream>
+#include <queue>
 
 class Game {
 private:
 	States state;
 	HUD* hud;
 	MusicManager* music;
+
+	std::queue<Bullet*>* poolB1;
+	std::queue<Bullet*>* poolB2;
+	//std::queue<Bullet>* vec2;
 
 	float cooldown1;
 	float cooldown2;

@@ -123,8 +123,18 @@ void Game::Play() {
 	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, constant::P_BLUE);
 
 	/* BULLETS */
-	std::vector<Bullet> vec1;
-	std::vector<Bullet> vec2;
+	//std::vector<Bullet> vec1;
+	//std::vector<Bullet> vec2;
+	std::vector<Bullet> bullets1;
+	std::vector<Bullet> bullets2;
+	poolB1 = new std::queue<Bullet*>();
+	poolB2 = new std::queue<Bullet*>();
+	for (int i = 0; i < 20; i++) {
+		Bullet* bul1 = new Bullet();
+		poolB1->push(bul1);
+		Bullet* bul2 = new Bullet();
+		poolB2->push(bul2);
+	}
 
 	/* MISC */
 	score1 = score2 = constant::INIT_SCORE;
@@ -166,11 +176,10 @@ void Game::Play() {
 		score.Update(timer, score1, score2, winner, state);
 
 		/* SHOOT */
-		/* FALTA ELIMINAR LAS BALAS */
 		if (isFiring1 == true) {
 			if (cooldown1 <= 0) {
 				cooldown1 = constant::COOLDOWN;
-				player1.Shoot(vec1, constant::SHOOT1_OFFSET);
+				player1.Shoot(poolB1, bullets1, constant::SHOOT1_OFFSET);
 				isFiring1 = false;
 			}
 		}
@@ -178,7 +187,7 @@ void Game::Play() {
 		if (isFiring2 == true) {
 			if (cooldown2 <= 0) {
 				cooldown2 = constant::COOLDOWN;
-				player2.Shoot(vec2, constant::SHOOT2_OFFSET);
+				player2.Shoot(poolB2, bullets2, constant::SHOOT2_OFFSET);
 				isFiring2 = false;
 			}
 		}
@@ -190,23 +199,43 @@ void Game::Play() {
 		player2.Draw(window);
 		hud->DrawGame(window);
 
-		for (int i = 0; i < vec1.size(); i++) {
-			vec1[i].Draw(window);
-			vec1[i].Move(constant::PLAYER_RED);	
-		}
+		if (!bullets1.empty())
+			for (int i = 0; i < bullets1.size(); i++) {
+				if (bullets1[i].IsActive()) {
+					bullets1[i].Draw(window);
+					bullets1[i].Move(constant::PLAYER_RED);
+				}
+				else {
+					poolB1->push(&bullets1[i]);
+					bullets1.erase(bullets1.begin() + i);
+					//bullets1.swap(bullets1.begin() + i, bullets1.end())
+					//bullets1.emplace(i, bullets1.size());
+					//bullets1.resize(bullets1.size() - 1);
+				}
+			}
+		else
+			std::cout << "hola" << std::endl;
 
-		for (int i = 0; i < vec2.size(); i++) {
-			vec2[i].Draw(window);
-			vec2[i].Move(constant::PLAYER_BLUE);
+		for (int i = 0; i < bullets2.size(); i++) {
+			if (bullets2[i].IsActive()) {
+				bullets2[i].Draw(window);
+				bullets2[i].Move(constant::PLAYER_BLUE);
+			}
+			else {
+				poolB2->push(&bullets2[i]);
+				bullets2.erase(bullets2.begin() + i);
+				//bullets2.emplace(bullets2.begin() + i, bullets2.end());
+				//bullets2.resize(bullets2.size() - 1);
+			}
 		}
 
 		/* COLLISIONS */
-		for (int i = 0; i < vec1.size(); i++) {
-			player2.CheckCollision(vec1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
+		for (int i = 0; i < bullets1.size(); i++) {
+			player2.CheckCollision(bullets1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
 		}
 
-		for (int i = 0; i < vec2.size(); i++) {
-			player1.CheckCollision(vec2[i], score2);
+		for (int i = 0; i < bullets2.size(); i++) {
+			player1.CheckCollision(bullets2[i], score2);
 		}
 
 		window.display();

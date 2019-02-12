@@ -7,13 +7,17 @@ class Bullet {
 
 private:
 	sf::RectangleShape bullet;
+	bool active;
 
 public:
-	Bullet(sf::Vector2f size);
+	Bullet();
 	~Bullet();
 	void Move(int playerNum);
 	void Draw(sf::RenderWindow & window);
 	void SetPos(sf::Vector2f pos);
+	void CheckBoundaries(int playerNum);
+	bool IsActive();
+	void SetActive(bool isActive);
 
 	int GetTop() { return bullet.getPosition().y; }
 	int GetBottom() { return bullet.getPosition().y + bullet.getSize().y; }

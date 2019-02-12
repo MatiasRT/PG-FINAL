@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include <queue>
 #include "Bullet.h"
 
 class Character {
@@ -22,6 +23,8 @@ private:
 
 	float velocity;
 	float cooldown;
+	float inputLag1;
+	float inputLag2;
 
 public:
 	Character(int x, int y, std::string path);
@@ -31,7 +34,8 @@ public:
 	void Input(float deltaTime, int playerNum, bool& shoot);
 	void Movement(float deltaTime);
 	void Draw(sf::RenderWindow & window);
-	void Shoot(std::vector<Bullet>& bulletVec, int offset);
+	//void Shoot(std::vector<Bullet>& bulletVec, int offset);
+	void Shoot(std::queue<Bullet*>* bulletQ, std::vector<Bullet>& vec, int offset);
 	void CheckCollision(Bullet bullet, int &score);
 
 	int GetX() { return player.getPosition().x; }
