@@ -46,7 +46,7 @@ namespace constant {
 	const int FRAMERATE = 60;
 	const int INIT_SCORE = 50000;
 	const int MAX_SCORE = 100000;
-	const int SUBTRACT_SCORE = 0;
+	const int SUBTRACT_SCORE = 500;
 	const float SUBTRACT_TIMER = 0.22f;
 
 	/* AUDIO */

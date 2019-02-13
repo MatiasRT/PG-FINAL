@@ -3,8 +3,8 @@
 #include "Constants.h"
 class BulletTwo : public Bullet {
 public:
-	BulletTwo();
-	~BulletTwo();
+	BulletTwo() {}
+	~BulletTwo() {}
 	void Move();
 	void CheckBoundaries();
 };

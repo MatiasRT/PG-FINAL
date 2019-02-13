@@ -3,9 +3,9 @@
 #include "Constants.h"
 class CollisionManager {
 	static CollisionManager* instance;
-	CollisionManager();
+	CollisionManager() {}
 public:
-	~CollisionManager();
+	~CollisionManager() {}
 	bool CheckCollision(sf::Vector2f player, sf::Vector2f bullet);
 
 	static CollisionManager* Instance() {

@@ -16,6 +16,8 @@ Game::Game() {
 Game::~Game() {
 	delete hud;
 	delete music;
+	delete player1;
+	delete player2;
 }
 
 void Game::RunGame() {
@@ -121,25 +123,8 @@ void Game::Play() {
 	sf::Sprite bkg(background);
 
 	/* PLAYERS */
-	//Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, constant::P_RED);
-	//Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, constant::P_BLUE);
-	PlayerOne* player1 = new PlayerOne();
-	PlayerTwo* player2 = new PlayerTwo();
-
-
-	/* BULLETS */
-	//std::vector<Bullet> vec1;
-	//std::vector<Bullet> vec2;
-	//std::vector<Bullet> bullets1;
-	//std::vector<Bullet> bullets2;
-	//poolB1 = new std::queue<Bullet*>();
-	//poolB2 = new std::queue<Bullet*>();
-	/*for (int i = 0; i < 20; i++) {
-		Bullet* bul1 = new Bullet();
-		poolB1->push(bul1);
-		Bullet* bul2 = new Bullet();
-		poolB2->push(bul2);
-	}*/
+	player1 = new PlayerOne();
+	player2 = new PlayerTwo();
 
 	/* MISC */
 	score1 = score2 = constant::INIT_SCORE;
@@ -175,8 +160,8 @@ void Game::Play() {
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1->Update(deltaTime, isFiring1, score1);
-		player2->Update(deltaTime, isFiring2, score2);
+		player1->Update(player2->GetPos(), deltaTime, isFiring1, score1);
+		player2->Update(player1->GetPos(), deltaTime, isFiring2, score2);
 		hud->Update(score1, score2);
 		score.Update(timer, score1, score2, winner, state);
 
@@ -203,45 +188,6 @@ void Game::Play() {
 		player1->Draw(window);
 		player2->Draw(window);
 		hud->DrawGame(window);
-
-		//if (!bullets1.empty())
-			/*for (int i = 0; i < bullets1.size(); i++) {
-				if (bullets1[i].IsActive()) {
-					bullets1[i].Draw(window);
-					bullets1[i].Move(constant::PLAYER_RED);
-				}
-				else {
-					poolB1->push(&bullets1[i]);
-					bullets1.erase(bullets1.begin() + i);
-					//bullets1.swap(bullets1.begin() + i, bullets1.end())
-					//bullets1.emplace(i, bullets1.size());
-					//bullets1.resize(bullets1.size() - 1);
-				}
-			}
-		//else
-			//std::cout << "hola" << std::endl;
-
-		for (int i = 0; i < bullets2.size(); i++) {
-			if (bullets2[i].IsActive()) {
-				bullets2[i].Draw(window);
-				bullets2[i].Move(constant::PLAYER_BLUE);
-			}
-			else {
-				poolB2->push(&bullets2[i]);
-				bullets2.erase(bullets2.begin() + i);
-				//bullets2.emplace(bullets2.begin() + i, bullets2.end());
-				//bullets2.resize(bullets2.size() - 1);
-			}
-		}*/
-
-		/* COLLISIONS */
-		/*for (int i = 0; i < bullets1.size(); i++) {
-			player2->CheckCollision(bullets1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
-		}
-
-		for (int i = 0; i < bullets2.size(); i++) {
-			player1->CheckCollision(bullets2[i], score2);
-		}*/
 
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();

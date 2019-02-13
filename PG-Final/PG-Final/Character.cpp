@@ -14,7 +14,7 @@ Character::~Character() {
 
 }
 
-void Character::Update(float deltaTime, bool& shoot, int& score) {
+void Character::Update(sf::Vector2f playerPos, float deltaTime, bool& shoot, int& score) {
 	Movement(deltaTime);
 
 	Input(deltaTime, shoot);
@@ -22,7 +22,8 @@ void Character::Update(float deltaTime, bool& shoot, int& score) {
 	for (int i = 0; i < bullets.size(); i++) {
 		if (bullets[i]->IsActive())
 			bullets[i]->Update();
-		if (CollisionManager::Instance()->CheckCollision(player.getPosition(), bullets[i]->GetPos())) {
+		if (CollisionManager::Instance()->CheckCollision(playerPos, bullets[i]->GetPos())) {
+			bullets[i]->SetActive(false);
 			hit.play();
 			if (score < constant::MAX_SCORE)
 				score += constant::HIT_POINTS;
@@ -69,37 +70,3 @@ void Character::Draw(sf::RenderWindow & window) {
 			bullets[i]->Draw(window);
 	}
 }
-
-/*void Character::Shoot(std::queue<Bullet*>* bulletQ, std::vector<Bullet>& vec, int offset) {
-	/*Bullet bullet(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
-	bullet.SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
-	bulletVec.push_back(bullet);/
-
-	Bullet* bullet = bulletQ->front();
-	bullet->SetActive(true);
-	bullet->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + offset));
-	vec.push_back(*bullet);
-	if(!bulletQ->empty())
-		bulletQ->pop();
-	else
-		std::cout << bulletQ->size() << std::endl;
-
-}*/
-
-/*void Character::CheckCollision(Bullet bullet, int &score) {
-
-	//bool isHit = false;
-
-	if (bullet.GetTop() < player.getPosition().y + player.getSize().y &&
-		bullet.GetBottom() > player.getPosition().y &&
-		bullet.GetLeft() < player.getPosition().x + player.getSize().x - constant::PLAYER_HEIGHT / 2 &&
-		bullet.GetRight() + constant::PLAYER_WIDTH / 2 > player.getPosition().x) {
-		//if (!isHit) {
-			//isHit = true;
-			hit.play();
-			//isHit = false;
-		//}
-		if(score < constant::MAX_SCORE)
-			score += constant::HIT_POINTS;
-	}
-}*/

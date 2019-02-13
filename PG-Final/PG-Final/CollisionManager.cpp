@@ -2,28 +2,15 @@
 
 CollisionManager* CollisionManager::instance = NULL;
 
-CollisionManager::CollisionManager() {
-
-}
-
-CollisionManager::~CollisionManager() {
-
-}
-
 bool CollisionManager::CheckCollision(sf::Vector2f player, sf::Vector2f bullet) {
-	if (bullet.y < player.y + constant::PLAYER_HEIGHT &&
-		bullet.y + constant::BULLER_HEIGHT > player.y &&
-		bullet.x < player.x + constant::PLAYER_WIDTH - constant::PLAYER_HEIGHT / 2 &&
-		bullet.x + constant::BULLER_WIDTH + constant::PLAYER_WIDTH / 2 > player.x) {
-		//if (!isHit) {
-			//isHit = true;
-		//hit.play();
-		//isHit = false;
-	//}
-		/*if (score < constant::MAX_SCORE)
-			score += constant::HIT_POINTS;*/
+
+	sf::Vector2f diff = player - bullet;
+
+	float diffX = abs(diff.x);
+	float diffY = abs(diff.y);
+
+	if (diffX <= (constant::PLAYER_WIDTH / 2 + constant::BULLER_WIDTH / 2) &&
+		diffY <= (constant::PLAYER_HEIGHT / 2 + constant::BULLER_HEIGHT / 2))
 		return true;
-	}
-	else
-		return false;
+	else return false;
 }

@@ -24,11 +24,13 @@ PlayerOne::PlayerOne() {
 
 PlayerOne::~PlayerOne() {
 	delete texture;
+
+	for (int i = 0; i < 20; i++) 
+		delete bullets[i];
 }
 
 void PlayerOne::Input(float deltaTime, bool & shoot) {
 	delay += deltaTime;
-	std::cout << velocity << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
@@ -58,13 +60,4 @@ void PlayerOne::Shoot() {
 		bullets[i]->SetActive(true);
 		bullets[i]->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + constant::SHOOT1_OFFSET));
 	}
-
-	//Bullet* bullet = bulletQ->front();
-	//bullet->SetActive(true);
-	//bullet->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + constant::SHOOT1_OFFSET));
-	//vec.push_back(*bullet);
-	//if (!bulletQ->empty())
-		//bulletQ->pop();
-	//else
-		//std::cout << bulletQ->size() << std::endl;
 }

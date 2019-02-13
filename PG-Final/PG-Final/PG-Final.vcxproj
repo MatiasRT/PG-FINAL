@@ -182,7 +182,6 @@ XCOPY "$(SolutionDir)PG-Final\Assets" "$(OutDir)\Assets" /e /i
     <ClInclude Include="MusicManager.h" />
     <ClInclude Include="PlayerOne.h" />
     <ClInclude Include="PlayerTwo.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="States.h" />
   </ItemGroup>

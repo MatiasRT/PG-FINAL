@@ -18,9 +18,8 @@ private:
 	HUD* hud;
 	MusicManager* music;
 
-	std::queue<Bullet*>* poolB1;
-	std::queue<Bullet*>* poolB2;
-	//std::queue<Bullet>* vec2;
+	PlayerOne* player1;
+	PlayerTwo* player2;
 
 	float cooldown1;
 	float cooldown2;

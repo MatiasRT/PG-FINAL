@@ -27,7 +27,7 @@ public:
 	Character();
 	~Character();
 
-	void Update(float deltaTime, bool& shoot, int& score);
+	void Update(sf::Vector2f playerPos, float deltaTime, bool& shoot, int& score);
 	virtual void Input(float deltaTime, bool& shoot) = 0;
 	virtual void Shoot() = 0;
 	void Draw(sf::RenderWindow & window);
@@ -37,5 +37,6 @@ public:
 
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }
+	sf::Vector2f GetPos() { return player.getPosition(); }
 };
 #endif

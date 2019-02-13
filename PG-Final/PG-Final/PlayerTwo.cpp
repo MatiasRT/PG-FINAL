@@ -24,6 +24,9 @@ PlayerTwo::PlayerTwo() {
 
 PlayerTwo::~PlayerTwo() {
 	delete texture;
+
+	for (int i = 0; i < 20; i++)
+		delete bullets[i];
 }
 
 void PlayerTwo::Input(float deltaTime, bool & shoot) {
@@ -54,6 +57,6 @@ void PlayerTwo::Shoot() {
 		std::cout << "NO BULLETS, ABORT!" << std::endl;
 	else {
 		bullets[i]->SetActive(true);
-		bullets[i]->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + constant::SHOOT1_OFFSET));
+		bullets[i]->SetPos(sf::Vector2f(player.getPosition().x, player.getPosition().y + constant::SHOOT2_OFFSET));
 	}
 }
