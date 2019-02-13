@@ -4,13 +4,12 @@
 #include <SFML/Audio.hpp>
 #include "PlayerOne.h"
 #include "PlayerTwo.h"
-#include "Bullet.h"
 #include "HUD.h"
 #include "States.h"
 #include "Score.h"
 #include "MusicManager.h"
+#include "Constants.h"
 #include <iostream>
-#include <queue>
 
 class Game {
 private:

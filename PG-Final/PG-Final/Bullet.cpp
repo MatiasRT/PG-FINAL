@@ -1,15 +1,9 @@
 #include "Bullet.h"
-#include "Constants.h"
 
-Bullet::Bullet() {
-	bullet.setSize(sf::Vector2f(constant::BULLER_WIDTH, constant::BULLER_HEIGHT));
+Bullet::Bullet() : active(false) {
+	bullet.setSize(sf::Vector2f(constant::BULLET_WIDTH, constant::BULLET_HEIGHT));
 	bullet.setFillColor(sf::Color::White);
 	bullet.setPosition(sf::Vector2f(-200.0f, -200.0f));
-	active = false;
-}
-
-Bullet::~Bullet() {
-
 }
 
 void Bullet::Update() {

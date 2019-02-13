@@ -1,6 +1,7 @@
 #ifndef SCORE_H
 #define SCORE_H
 #include "States.h"
+#include "Constants.h"
 
 class Score {
 public:

@@ -1,5 +1,4 @@
 #include "HUD.h"
-#include "Constants.h"
 
 HUD::HUD() {
 	if (!font1.loadFromFile("Assets/beef.ttf")) 
@@ -17,7 +16,6 @@ HUD::~HUD() {
 	delete winText;
 	delete playerW;
 	delete score;
-	delete restart;
 }
 
 void HUD::Menu() {
@@ -86,11 +84,6 @@ void HUD::Over(std::string pWin, int finalScore) {
 	menu->setOrigin(std::round(menu->getLocalBounds().width / 2), 20);
 	menu->setPosition((800 / 2), 500);
 	menu->setFillColor(sf::Color::White);
-
-	restart = new sf::Text("Press R to restart", font1, constant::FONT_SIZE4);
-	restart->setOrigin(std::round(restart->getLocalBounds().width / 2), 20);
-	restart->setPosition((800 / 2), 550);
-	restart->setFillColor(sf::Color::White);
 }
 
 void HUD::Update(int score1, int score2) {
@@ -115,5 +108,4 @@ void HUD::DrawOver(sf::RenderWindow & window) {
 	window.draw(*playerW);
 	window.draw(*score);
 	window.draw(*menu);
-	//window.draw(*restart);
 }

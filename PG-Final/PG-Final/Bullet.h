@@ -1,5 +1,6 @@
 #ifndef BULLET_H
 #define BULLET_H
+#include "Constants.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -9,7 +10,7 @@ protected:
 	bool active;
 public:
 	Bullet();
-	~Bullet();
+	~Bullet() {};
 	virtual void Move() = 0;
 	virtual void CheckBoundaries() = 0;
 	void Draw(sf::RenderWindow & window);

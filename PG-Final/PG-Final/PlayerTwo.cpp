@@ -1,7 +1,6 @@
 #include "PlayerTwo.h"
-#include "Constants.h"
 
-PlayerTwo::PlayerTwo() {
+PlayerTwo::PlayerTwo() : delay(0.0f){
 	texture = new sf::Texture;
 	texture->loadFromFile(constant::P_BLUE);
 	player.setSize(sf::Vector2f(constant::PLAYER_WIDTH, constant::PLAYER_HEIGHT));
@@ -14,9 +13,7 @@ PlayerTwo::PlayerTwo() {
 	atk.setBuffer(atkBuffer);
 	atk.setVolume(constant::ATK_VOLUME);
 
-	delay = 0.0f;
-
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < constant::BULLETS; i++) {
 		BulletTwo* bul = new BulletTwo();
 		bullets.push_back(bul);
 	}
@@ -25,7 +22,7 @@ PlayerTwo::PlayerTwo() {
 PlayerTwo::~PlayerTwo() {
 	delete texture;
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < constant::BULLETS; i++)
 		delete bullets[i];
 }
 
@@ -38,7 +35,7 @@ void PlayerTwo::Input(float deltaTime, bool & shoot) {
 		velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !shoot) {
-		if (delay > 0.42f) {
+		if (delay > constant::INPUT_DELAY) {
 			shoot = true;
 			atk.play();
 			delay = 0.0f;
@@ -49,9 +46,8 @@ void PlayerTwo::Input(float deltaTime, bool & shoot) {
 void PlayerTwo::Shoot() {
 	int i = 0;
 
-	while (i < bullets.size() && bullets[i]->IsActive() == true) {
+	while (i < bullets.size() && bullets[i]->IsActive() == true)
 		i++;
-	}
 
 	if (i == bullets.size())
 		std::cout << "NO BULLETS, ABORT!" << std::endl;

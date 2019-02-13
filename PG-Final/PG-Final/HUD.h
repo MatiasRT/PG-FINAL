@@ -1,5 +1,6 @@
 #ifndef HUD_H
 #define HUD_H
+#include "Constants.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -17,7 +18,6 @@ private:
 	sf::Text* playerW;
 	sf::Text* score;
 	sf::Text* menu;
-	sf::Text* restart;
 
 public:
 	HUD();

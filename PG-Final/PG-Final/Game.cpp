@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Constants.h"
 
 Game::Game() {
 	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), constant::GAME_NAME, sf::Style::Close);
@@ -25,22 +24,23 @@ void Game::RunGame() {
 
 	while (state != EXIT) {
 		switch (state) {
-		case MENU:
-			Menu();
-			break;
-		case GAME:
-			Play();
-			break;
-		case CONTROLS:
-			Controls();
-			break;
-		case OVER:
-			GameOver(winner);
-			break;
-		case EXIT:
-			break;
+			case MENU:
+				Menu();
+				break;
+			case GAME:
+				Play();
+				break;
+			case CONTROLS:
+				Controls();
+				break;
+			case OVER:
+				GameOver(winner);
+				break;
+			case EXIT:
+				break;
 		}
 	}
+	window.close();
 }
 
 void Game::Menu() {
@@ -59,7 +59,7 @@ void Game::Menu() {
 	sf::String menuTextString[3] = { constant::PLAY, constant::HOW_TO, constant::EXIT };
 
 	sf::Text menuText(menuTextString[0], font1, constant::FONT_SIZE5);
-	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20);
+	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20); //REVISAR LINEA
 	menuText.setPosition(constant::MENU_TEXT_X, constant::MENU_TEXT_Y);
 	menuText.setFillColor(sf::Color::White);
 

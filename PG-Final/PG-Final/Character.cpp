@@ -1,5 +1,4 @@
 #include "Character.h"
-#include "Constants.h"
 
 Character::Character() {
 
@@ -7,11 +6,6 @@ Character::Character() {
 
 	hit.setBuffer(hitBuffer);
 	hit.setVolume(constant::HIT_VOLUME);
-
-}
-
-Character::~Character() {
-
 }
 
 void Character::Update(sf::Vector2f playerPos, float deltaTime, bool& shoot, int& score) {

@@ -1,11 +1,12 @@
-#pragma once
+#ifndef COLLISIONMANAGER_H
+#define COLLISIONMANAGER_H
 #include <SFML/Graphics.hpp>
 #include "Constants.h"
 class CollisionManager {
 	static CollisionManager* instance;
-	CollisionManager() {}
+	CollisionManager() {};
 public:
-	~CollisionManager() {}
+	~CollisionManager() {};
 	bool CheckCollision(sf::Vector2f player, sf::Vector2f bullet);
 
 	static CollisionManager* Instance() {
@@ -15,3 +16,4 @@ public:
 		return instance;
 	};
 };
+#endif

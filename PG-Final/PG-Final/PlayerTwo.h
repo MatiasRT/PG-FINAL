@@ -2,15 +2,14 @@
 #define PLAYERTWO_H
 #include "Character.h"
 #include "BulletTwo.h"
+#include "Constants.h"
 class PlayerTwo : public Character {
 	sf::Texture* texture;
 
 	sf::SoundBuffer atkBuffer;
-
 	sf::Sound atk;
 
 	float delay;
-	//std::vector<Bullet*> bullets;
 public:
 	PlayerTwo();
 	~PlayerTwo();

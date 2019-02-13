@@ -19,13 +19,16 @@ namespace constant {
 	const float VELOCITY_FRICTION = 1000.0f;
 
 	/* BULLET */
-	const int BULLER_WIDTH = 5;
-	const int BULLER_HEIGHT = 30;
-	const int BULLER_SPEED_X = 0;
+	const int BULLETS = 5;
+	const int BULLET_WIDTH = 5;
+	const int BULLET_HEIGHT = 30;
+	const int BULLET_SPEED_X = 0;
 	const int BULLET_SPEED_Y = 10;
 	const int SHOOT1_OFFSET = -60;
 	const int SHOOT2_OFFSET = 30;
 	const float COOLDOWN = 0.30f;
+	const int BULLET_COL_DOWN_Y = -50;
+	const int BULLET_COL_UP_Y = 650;
 
 	/* FONTS */
 	const int FONT_SIZE1 = 18;
@@ -44,10 +47,11 @@ namespace constant {
 
 	/* MISC */
 	const int FRAMERATE = 60;
-	const int INIT_SCORE = 50000;
+	const int INIT_SCORE = 50500;
 	const int MAX_SCORE = 100000;
 	const int SUBTRACT_SCORE = 500;
 	const float SUBTRACT_TIMER = 0.22f;
+	const float INPUT_DELAY = 0.42f;
 
 	/* AUDIO */
 	const int ATK_VOLUME = 40;
