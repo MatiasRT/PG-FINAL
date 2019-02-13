@@ -2,7 +2,8 @@
 #define GAME_H
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "Character.h"
+#include "PlayerOne.h"
+#include "PlayerTwo.h"
 #include "Bullet.h"
 #include "HUD.h"
 #include "States.h"

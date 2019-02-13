@@ -113,28 +113,33 @@ void Game::Menu() {
 
 void Game::Play() {
 
+	CollisionManager::Instance();
+
 	sf::Texture background;
 	if (!background.loadFromFile(constant::BACKGROUND))
 		std::cout << "Error: howtoTexture loadFromFile failed" << std::endl;
 	sf::Sprite bkg(background);
 
 	/* PLAYERS */
-	Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, constant::P_RED);
-	Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, constant::P_BLUE);
+	//Character player1(constant::PLAYER1_SPAWN_X, constant::PLAYER1_SPAWN_Y, constant::P_RED);
+	//Character player2(constant::PLAYER2_SPAWN_X, constant::PLAYER2_SPAWN_Y, constant::P_BLUE);
+	PlayerOne* player1 = new PlayerOne();
+	PlayerTwo* player2 = new PlayerTwo();
+
 
 	/* BULLETS */
 	//std::vector<Bullet> vec1;
 	//std::vector<Bullet> vec2;
-	std::vector<Bullet> bullets1;
-	std::vector<Bullet> bullets2;
-	poolB1 = new std::queue<Bullet*>();
-	poolB2 = new std::queue<Bullet*>();
-	for (int i = 0; i < 20; i++) {
+	//std::vector<Bullet> bullets1;
+	//std::vector<Bullet> bullets2;
+	//poolB1 = new std::queue<Bullet*>();
+	//poolB2 = new std::queue<Bullet*>();
+	/*for (int i = 0; i < 20; i++) {
 		Bullet* bul1 = new Bullet();
 		poolB1->push(bul1);
 		Bullet* bul2 = new Bullet();
 		poolB2->push(bul2);
-	}
+	}*/
 
 	/* MISC */
 	score1 = score2 = constant::INIT_SCORE;
@@ -170,8 +175,8 @@ void Game::Play() {
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1.Update(deltaTime, constant::PLAYER_RED, isFiring1);
-		player2.Update(deltaTime, constant::PLAYER_BLUE, isFiring2);
+		player1->Update(deltaTime, isFiring1, score1);
+		player2->Update(deltaTime, isFiring2, score2);
 		hud->Update(score1, score2);
 		score.Update(timer, score1, score2, winner, state);
 
@@ -179,7 +184,7 @@ void Game::Play() {
 		if (isFiring1 == true) {
 			if (cooldown1 <= 0) {
 				cooldown1 = constant::COOLDOWN;
-				player1.Shoot(poolB1, bullets1, constant::SHOOT1_OFFSET);
+				player1->Shoot();
 				isFiring1 = false;
 			}
 		}
@@ -187,7 +192,7 @@ void Game::Play() {
 		if (isFiring2 == true) {
 			if (cooldown2 <= 0) {
 				cooldown2 = constant::COOLDOWN;
-				player2.Shoot(poolB2, bullets2, constant::SHOOT2_OFFSET);
+				player2->Shoot();
 				isFiring2 = false;
 			}
 		}
@@ -195,12 +200,12 @@ void Game::Play() {
 		/* DRAWS */
 		window.clear(sf::Color::Black);
 		window.draw(bkg);
-		player1.Draw(window);
-		player2.Draw(window);
+		player1->Draw(window);
+		player2->Draw(window);
 		hud->DrawGame(window);
 
-		if (!bullets1.empty())
-			for (int i = 0; i < bullets1.size(); i++) {
+		//if (!bullets1.empty())
+			/*for (int i = 0; i < bullets1.size(); i++) {
 				if (bullets1[i].IsActive()) {
 					bullets1[i].Draw(window);
 					bullets1[i].Move(constant::PLAYER_RED);
@@ -213,8 +218,8 @@ void Game::Play() {
 					//bullets1.resize(bullets1.size() - 1);
 				}
 			}
-		else
-			std::cout << "hola" << std::endl;
+		//else
+			//std::cout << "hola" << std::endl;
 
 		for (int i = 0; i < bullets2.size(); i++) {
 			if (bullets2[i].IsActive()) {
@@ -227,16 +232,16 @@ void Game::Play() {
 				//bullets2.emplace(bullets2.begin() + i, bullets2.end());
 				//bullets2.resize(bullets2.size() - 1);
 			}
-		}
+		}*/
 
 		/* COLLISIONS */
-		for (int i = 0; i < bullets1.size(); i++) {
-			player2.CheckCollision(bullets1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
+		/*for (int i = 0; i < bullets1.size(); i++) {
+			player2->CheckCollision(bullets1[i], score1);	////ACORDARSE DE HACER LO DE LA REFERENCIA BIEN
 		}
 
 		for (int i = 0; i < bullets2.size(); i++) {
-			player1.CheckCollision(bullets2[i], score2);
-		}
+			player1->CheckCollision(bullets2[i], score2);
+		}*/
 
 		window.display();
 		deltaTime = clock.getElapsedTime().asSeconds();

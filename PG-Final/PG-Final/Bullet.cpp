@@ -11,7 +11,12 @@ Bullet::~Bullet() {
 
 }
 
-void Bullet::Move(int playerNum) {
+void Bullet::Update() {
+	Move();
+	CheckBoundaries();
+}
+
+/*void Bullet::Move(int playerNum) {
 	//active = true;
 	switch (playerNum) {
 		case 1:
@@ -35,7 +40,7 @@ void Bullet::CheckBoundaries(int playerNum) {
 				active = false;
 			break;
 	}
-}
+}*/
 
 void Bullet::Draw(sf::RenderWindow & window) {
 	window.draw(bullet);
@@ -52,3 +57,5 @@ bool Bullet::IsActive() {
 void Bullet::SetActive(bool isActive) {
 	active = isActive;
 }
+
+

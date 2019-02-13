@@ -5,38 +5,35 @@
 #include <iostream>
 #include <queue>
 #include "Bullet.h"
+#include "CollisionManager.h"
 
 class Character {
 
-private:
+protected:
 
 	sf::RectangleShape player;
-	sf::Texture* texture;
-
-	sf::SoundBuffer atkBufferRED;
-	sf::SoundBuffer atkBufferBLUE;
-	sf::SoundBuffer hitBuffer;
-
-	sf::Sound atkRED;
-	sf::Sound atkBLUE;
-	sf::Sound hit;
+	std::vector<Bullet*> bullets;
 
 	float velocity;
 	float cooldown;
-	float inputLag1;
-	float inputLag2;
+
+private:
+
+	sf::SoundBuffer hitBuffer;
+
+	sf::Sound hit;
 
 public:
-	Character(int x, int y, std::string path);
+	Character();
 	~Character();
 
-	void Update(float deltaTime, int playerNum, bool& shoot);
-	void Input(float deltaTime, int playerNum, bool& shoot);
-	void Movement(float deltaTime);
+	void Update(float deltaTime, bool& shoot, int& score);
+	virtual void Input(float deltaTime, bool& shoot) = 0;
+	virtual void Shoot() = 0;
 	void Draw(sf::RenderWindow & window);
+	void Movement(float deltaTime);
 	//void Shoot(std::vector<Bullet>& bulletVec, int offset);
-	void Shoot(std::queue<Bullet*>* bulletQ, std::vector<Bullet>& vec, int offset);
-	void CheckCollision(Bullet bullet, int &score);
+	//void CheckCollision(/*Bullet bullet,*/ int &score);
 
 	int GetX() { return player.getPosition().x; }
 	int GetY() { return player.getPosition().y; }
