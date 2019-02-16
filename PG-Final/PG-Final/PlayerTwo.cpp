@@ -22,8 +22,8 @@ PlayerTwo::PlayerTwo() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 PlayerTwo::~PlayerTwo() {
 	delete texture;
 
-	for (int i = 0; i < constant::BULLETS; i++)
-		delete bullets[i];
+	/*for (int i = 0; i < constant::BULLETS; i++)
+		delete bullets[i];*/
 }
 
 void PlayerTwo::Input(float deltaTime) {

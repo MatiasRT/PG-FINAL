@@ -8,6 +8,11 @@ Character::Character() {
 	hit.setVolume(constant::HIT_VOLUME);
 }
 
+Character::~Character() {
+	for (int i = 0; i < bullets.size(); i++)
+		delete bullets[i];
+}
+
 void Character::Update(sf::Vector2f playerPos, float deltaTime, int& score) {
 	Movement(deltaTime);
 
@@ -26,24 +31,19 @@ void Character::Update(sf::Vector2f playerPos, float deltaTime, int& score) {
 }
 
 void Character::Movement(float deltaTime) {
-	
-	/* Velocidad maxima del jugador */
+
 	if (velocity > constant::MAX_VELOCITY)
 		velocity = constant::MAX_VELOCITY;
 
 	if (velocity < -constant::MAX_VELOCITY)
 		velocity = -constant::MAX_VELOCITY;
 
-
-	/* Friccion del jugador */
 	if (velocity > 0)
 		velocity -= deltaTime * constant::VELOCITY_FRICTION;
 
 	if (velocity < 0)
 		velocity += deltaTime * constant::VELOCITY_FRICTION;
 
-
-	/* Limites del jugador */
 	if (player.getPosition().x > constant::WINDOW_MAX_X) {
 		player.setPosition(constant::WINDOW_MAX_X, player.getPosition().y);
 		velocity = 0;

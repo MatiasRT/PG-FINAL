@@ -22,8 +22,8 @@ PlayerOne::PlayerOne() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 PlayerOne::~PlayerOne() {
 	delete texture;
 
-	for (int i = 0; i < constant::BULLETS; i++)
-		delete bullets[i];
+	/*for (int i = 0; i < constant::BULLETS; i++)
+		delete bullets[i];*/
 }
 
 void PlayerOne::Input(float deltaTime) {

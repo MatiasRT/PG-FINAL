@@ -22,7 +22,7 @@ private:
 
 public:
 	Character();
-	~Character() {};
+	~Character();
 
 	virtual void Input(float deltaTime) = 0;
 	virtual void Shoot() = 0;
