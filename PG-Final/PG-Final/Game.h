@@ -16,12 +16,11 @@ private:
 	States state;
 	HUD* hud;
 	MusicManager* music;
+	Score* score;
 
 	PlayerOne* player1;
 	PlayerTwo* player2;
 
-	float cooldown1;
-	float cooldown2;
 	float timer;
 	int winner;
 

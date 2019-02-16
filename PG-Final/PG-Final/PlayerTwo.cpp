@@ -1,6 +1,6 @@
 #include "PlayerTwo.h"
 
-PlayerTwo::PlayerTwo() : delay(0.0f){
+PlayerTwo::PlayerTwo() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 	texture = new sf::Texture;
 	texture->loadFromFile(constant::P_BLUE);
 	player.setSize(sf::Vector2f(constant::PLAYER_WIDTH, constant::PLAYER_HEIGHT));
@@ -26,19 +26,29 @@ PlayerTwo::~PlayerTwo() {
 		delete bullets[i];
 }
 
-void PlayerTwo::Input(float deltaTime, bool & shoot) {
+void PlayerTwo::Input(float deltaTime) {
+
 	delay += deltaTime;
+	cooldown -= deltaTime;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0) && !shoot) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad0)) {
 		if (delay > constant::INPUT_DELAY) {
-			shoot = true;
-			atk.play();
-			delay = 0.0f;
+			isFiring = true;
+			if (isFiring) {
+				if (cooldown <= 0) {
+					cooldown = constant::COOLDOWN;
+					Shoot();
+					atk.play();
+					isFiring = false;
+					delay = 0.0f;
+				}
+			}
 		}
 	}
 }

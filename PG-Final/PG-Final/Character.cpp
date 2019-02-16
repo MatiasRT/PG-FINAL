@@ -8,10 +8,10 @@ Character::Character() {
 	hit.setVolume(constant::HIT_VOLUME);
 }
 
-void Character::Update(sf::Vector2f playerPos, float deltaTime, bool& shoot, int& score) {
+void Character::Update(sf::Vector2f playerPos, float deltaTime, int& score) {
 	Movement(deltaTime);
 
-	Input(deltaTime, shoot);
+	Input(deltaTime);
 
 	for (int i = 0; i < bullets.size(); i++) {
 		if (bullets[i]->IsActive())

@@ -137,7 +137,7 @@ COPY "$(SolutionDir)Visual Leak Detector\bin\Win32\" "$(OutDir)"</Command>
 COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-system-2.dll" "$(OutDir)"
 COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-audio-2.dll" "$(OutDir)"
 COPY "$(SolutionDir)SFML-2.5.0\bin\sfml-window-2.dll" "$(OutDir)"
-XCOPY "$(SolutionDir)PG-Final\Assets" "$(OutDir)\Assets" /e /i
+XCOPY "$(SolutionDir)PG-Final\Assets" "$(OutDir)\Assets" /e /i /y
 
 </Command>
     </PostBuildEvent>

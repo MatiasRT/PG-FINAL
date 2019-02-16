@@ -1,6 +1,6 @@
 #include "PlayerOne.h"
 
-PlayerOne::PlayerOne() : delay(0.0f) {
+PlayerOne::PlayerOne() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 	texture = new sf::Texture;
 	texture->loadFromFile(constant::P_RED);
 	player.setSize(sf::Vector2f(constant::PLAYER_WIDTH, constant::PLAYER_HEIGHT));
@@ -26,19 +26,30 @@ PlayerOne::~PlayerOne() {
 		delete bullets[i];
 }
 
-void PlayerOne::Input(float deltaTime, bool & shoot) {
+void PlayerOne::Input(float deltaTime) {
+
 	delay += deltaTime;
+	cooldown -= deltaTime;
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity += deltaTime * constant::VELOCITY_MULTIPLIER;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		velocity -= deltaTime * constant::VELOCITY_MULTIPLIER;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !shoot) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if (delay > constant::INPUT_DELAY) {
-			shoot = true;
-			atk.play();
-			delay = 0.0f;
+			isFiring = true;
+			if (isFiring) {
+				if (cooldown <= 0) {
+					cooldown = constant::COOLDOWN;
+					Shoot();
+					atk.play();
+					isFiring = false;
+					delay = 0.0f;
+				}
+			}
+
 		}
 	}
 }

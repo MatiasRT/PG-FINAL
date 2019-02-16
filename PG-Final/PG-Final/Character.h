@@ -24,9 +24,9 @@ public:
 	Character();
 	~Character() {};
 
-	virtual void Input(float deltaTime, bool& shoot) = 0;
+	virtual void Input(float deltaTime) = 0;
 	virtual void Shoot() = 0;
-	void Update(sf::Vector2f playerPos, float deltaTime, bool& shoot, int& score);
+	void Update(sf::Vector2f playerPos, float deltaTime, int& score);
 	void Draw(sf::RenderWindow & window);
 	void Movement(float deltaTime);
 

@@ -17,6 +17,7 @@ Game::~Game() {
 	delete music;
 	delete player1;
 	delete player2;
+	delete score;
 }
 
 void Game::RunGame() {
@@ -130,10 +131,7 @@ void Game::Play() {
 	score1 = score2 = constant::INIT_SCORE;
 	sf::Clock clock;
 	hud->Game();
-	Score score;
-
-	bool isFiring1 = false;
-	bool isFiring2 = false;
+	score = new Score();
 
 	while (state == GAME) {
 
@@ -155,32 +153,13 @@ void Game::Play() {
 			}
 		}
 
-		cooldown1 -= deltaTime;
-		cooldown2 -= deltaTime;
 		timer -= deltaTime;
 
 		/* UPDATES */
-		player1->Update(player2->GetPos(), deltaTime, isFiring1, score1);
-		player2->Update(player1->GetPos(), deltaTime, isFiring2, score2);
+		player1->Update(player2->GetPos(), deltaTime, score1);
+		player2->Update(player1->GetPos(), deltaTime, score2);
 		hud->Update(score1, score2);
-		score.Update(timer, score1, score2, winner, state);
-
-		/* SHOOT */
-		if (isFiring1 == true) {
-			if (cooldown1 <= 0) {
-				cooldown1 = constant::COOLDOWN;
-				player1->Shoot();
-				isFiring1 = false;
-			}
-		}
-
-		if (isFiring2 == true) {
-			if (cooldown2 <= 0) {
-				cooldown2 = constant::COOLDOWN;
-				player2->Shoot();
-				isFiring2 = false;
-			}
-		}
+		score->Update(timer, score1, score2, winner, state);
 
 		/* DRAWS */
 		window.clear(sf::Color::Black);

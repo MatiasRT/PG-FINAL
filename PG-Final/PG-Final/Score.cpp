@@ -7,12 +7,12 @@ void Score::Update(float & timer, int & score1, int & score2, int & winner, Stat
 		score2 -= constant::SUBTRACT_SCORE;
 	}
 
-	if (score1 < 0) {
+	if (score1 <= 0) {
 		winner = constant::PLAYER_BLUE;
 		state = OVER;
 	}
 
-	if (score2 < 0) {
+	if (score2 <= 0) {
 		winner = constant::PLAYER_RED;
 		state = OVER;
 	}

@@ -9,11 +9,14 @@ class PlayerTwo : public Character {
 	sf::SoundBuffer atkBuffer;
 	sf::Sound atk;
 
+	bool isFiring;
 	float delay;
+	float cooldown;
+
 public:
 	PlayerTwo();
 	~PlayerTwo();
-	void Input(float deltaTime, bool& shoot) override;
+	void Input(float deltaTime) override;
 	void Shoot() override;
 };
 #endif
