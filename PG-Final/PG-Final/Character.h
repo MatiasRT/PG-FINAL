@@ -6,7 +6,6 @@
 #include <queue>
 #include "Bullet.h"
 #include "CollisionManager.h"
-#include "Constants.h"
 
 class Character {
 protected:

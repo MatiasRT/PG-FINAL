@@ -1,6 +1,6 @@
 #ifndef BULLET_H
 #define BULLET_H
-#include "Constants.h"
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 

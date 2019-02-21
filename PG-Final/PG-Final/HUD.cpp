@@ -1,4 +1,5 @@
 #include "HUD.h"
+#include "Constants.h"
 
 HUD::HUD() {
 	if (!font1.loadFromFile("Assets/beef.ttf")) 

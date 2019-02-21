@@ -1,4 +1,5 @@
 #include "PlayerTwo.h"
+#include "Constants.h"
 
 PlayerTwo::PlayerTwo() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 	texture = new sf::Texture;

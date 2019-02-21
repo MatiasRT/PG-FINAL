@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include "Constants.h"
 
 CollisionManager* CollisionManager::instance = NULL;
 

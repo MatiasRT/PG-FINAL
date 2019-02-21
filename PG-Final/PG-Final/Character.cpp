@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Constants.h"
 
 Character::Character() {
 

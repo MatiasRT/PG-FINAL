@@ -1,4 +1,5 @@
 #include "Score.h"
+#include "Constants.h"
 
 void Score::Update(float & timer, int & score1, int & score2, int & winner, States & state) {
 	if (timer <= 0) {

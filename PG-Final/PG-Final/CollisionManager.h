@@ -1,7 +1,7 @@
 #ifndef COLLISIONMANAGER_H
 #define COLLISIONMANAGER_H
 #include <SFML/Graphics.hpp>
-#include "Constants.h"
+
 class CollisionManager {
 	static CollisionManager* instance;
 	CollisionManager() {};

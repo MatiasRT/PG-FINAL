@@ -1,4 +1,5 @@
 #include "BulletOne.h"
+#include "Constants.h"
 
 void BulletOne::Move() {
 	bullet.move(constant::BULLET_SPEED_X, -constant::BULLET_SPEED_Y);

@@ -1,4 +1,5 @@
 #include "MusicManager.h"
+#include "Constants.h"
 
 MusicManager::MusicManager() {
 	mainMusic = new sf::Music;

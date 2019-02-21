@@ -1,4 +1,5 @@
 #include "PlayerOne.h"
+#include "Constants.h"
 
 PlayerOne::PlayerOne() : delay(0.0f), isFiring(false), cooldown(0.0f) {
 	texture = new sf::Texture;

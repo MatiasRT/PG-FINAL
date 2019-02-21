@@ -2,7 +2,7 @@
 #define PLAYERONE_H
 #include "Character.h"
 #include "BulletOne.h"
-#include "Constants.h"
+
 class PlayerOne : public Character {
 	sf::Texture* texture;
 

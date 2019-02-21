@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Constants.h"
 
 Game::Game() {
 	window.create(sf::VideoMode(constant::WINDOW_WIDTH, constant::WINDOW_HEIGHT), constant::GAME_NAME, sf::Style::Close);

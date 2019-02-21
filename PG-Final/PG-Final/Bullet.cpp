@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "Constants.h"
 
 Bullet::Bullet() : active(false) {
 	bullet.setSize(sf::Vector2f(constant::BULLET_WIDTH, constant::BULLET_HEIGHT));

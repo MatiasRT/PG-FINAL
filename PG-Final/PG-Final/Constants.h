@@ -72,7 +72,7 @@ namespace constant {
 	const std::string HIT_BLUE = "Assets/Music/Hit_BLUE.wav";
 	const std::string FONT = "Assets/beef.ttf";
 	const std::string TEXTURE_ARROW = "Assets/Arrow.png";
-	const std::string BACKGROUND = "Assets/BKG.png";
+	const std::string BACKGROUND = "Assets/BKG3.png";
 	const std::string P_RED = "Assets/RED.png";
 	const std::string P_BLUE = "Assets/BLUE.png";
 	const std::string TEXTURE_HOWTO = "Assets/HOW_TO.png";

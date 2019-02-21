@@ -8,7 +8,6 @@
 #include "States.h"
 #include "Score.h"
 #include "MusicManager.h"
-#include "Constants.h"
 #include <iostream>
 
 class Game {
