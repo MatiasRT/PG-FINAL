@@ -23,6 +23,7 @@
     <ProjectGuid>{C7ADA662-CB11-4387-B12E-12F4B4E0667F}</ProjectGuid>
     <RootNamespace>PGFinal</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>REDVSBLUE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
