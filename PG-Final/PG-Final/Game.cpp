@@ -61,7 +61,6 @@ void Game::Menu() {
 	sf::String menuTextString[3] = { constant::PLAY, constant::HOW_TO, constant::EXIT };
 
 	sf::Text menuText(menuTextString[0], font1, constant::FONT_SIZE5);
-	menuText.setOrigin(std::round(menuText.getLocalBounds().width / 2), 20); //REVISAR LINEA
 	menuText.setPosition(constant::MENU_TEXT_X, constant::MENU_TEXT_Y);
 	menuText.setFillColor(sf::Color::White);
 

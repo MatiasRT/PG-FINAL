@@ -36,8 +36,8 @@ namespace constant {
 	const int FONT_SIZE3 = 25;
 	const int FONT_SIZE4 = 10;
 	const int FONT_SIZE5 = 28;
-	const int MENU_TEXT_X = 400;
-	const int MENU_TEXT_Y = 400;
+	const int MENU_TEXT_X = 320;
+	const int MENU_TEXT_Y = 385;
 
 	/* WINDOW */
 	const int WINDOW_MIN_X = 0;
